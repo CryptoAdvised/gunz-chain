@@ -1,0 +1,2 @@
+# gunz-chain
+This project is to make gunz live forever using blockchain imutability. We hope to attain this goal by merging refined gunz client and server, decentralising data management using open source ethereum  blockchain technologie,  applying security patchs regularly, creating a validation censensus base on a gunz "fair-play" algorithme to reward players a tradable token.  If you are interested in making gunz living forever storing it's data on a blockchain and rewarding it's players tradable crypto tokens, then up on the team and help us make gunz great again. 
