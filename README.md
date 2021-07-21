@@ -63,8 +63,8 @@ If you are using Windows Subsystem for Linux, and the source is somwhere in `/mn
 Requisites:
 
 * Download the server and client files.
-	- [Client files](https://github.com/open-gunz/client)
-	- [Server files](https://github.com/open-gunz/server)
+	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases/tag/0.0.0.1)
+
 * Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe, Launcher.exe, and MatchServer.exe in their respective client/server folders.
 * Change IP to `127.0.0.1` in config file --> `C:\Users\[username]\Documents\International GunZ\config.xml`.
 * In the server folder, open `server.ini` file in notepad:
