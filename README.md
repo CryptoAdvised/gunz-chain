@@ -62,14 +62,14 @@ If you are using Windows Subsystem for Linux, and the source is somwhere in `/mn
 # Launching local test client for the first time
 Requisites:
 
-* Download the server and client files.
+1. Download the server and client files.
 
 	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases/tag/0.0.0.1)
 
-* Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe, Launcher.exe, and MatchServer.exe in their respective client/server folders.
-* Run GunZ.exe from client folder (DO NOT USE Launcher.exe as it will downgrade to what is placed on the website for patching).
-* You can also run GunZ.exe on Linux using Wine. Currently everything seems to work, but text rendering is broken and text is unreadable.
-* Register a test account within the client and login.
+2. Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe, Launcher.exe, and MatchServer.exe in their respective client/server folders.
+3. Run GunZ.exe from client folder (DO NOT USE Launcher.exe as it will downgrade to what is placed on the website for patching).
+4. You can also run GunZ.exe on Linux using Wine. Currently everything seems to work, but text rendering is broken and text is unreadable.
+5. Register a test account within the client and login.
 
 # Contact
 Feel free to post any issue in the issues section.  
