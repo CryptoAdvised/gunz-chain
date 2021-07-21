@@ -6,6 +6,12 @@ It's based on open-gunz, itself based on refined gunz. The goal of this project 
 
 This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated game tools. It was forked from the Refined GunZ source (https://github.com/Asunaya/RefinedGunz) and updated by the International GunZ (http://igunz.net) private server developers. Then CryptoAdvised forked it to make Gunz a blockchain.
 
+# Other implemented features
+-Anti-cheat (0delay, speedhack, flipmower, lawnmower, insane massive...)
+-Anti-shotbot
+-Matchserver crashs fixs
+-Gunz.exe and Matchserver.exe are now merged everyone now become it's own matchserver. (Incomplete: decentralise data management still need to be added)
+
 # Building the source for the first time
 
 ## Windows:
