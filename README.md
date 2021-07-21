@@ -1,10 +1,21 @@
 # gunz-chain
 This project is to make gunz live forever using blockchain imutability. We hope to attain this goal by merging refined gunz client and server, decentralising data management using open source ethereum  blockchain technologie,  applying security patchs regularly, creating a validation censensus base on a gunz "fair-play" algorithme to reward players a tradable token.  If you are interested in making gunz living forever storing it's data on a blockchain and rewarding it's players tradable crypto tokens, then up on the team and help us make gunz great again. 
 
-# gunz-chain Source
+# Source
 It's based on open-gunz, itself based on refined gunz. The goal of this project is to make gunz completely decentralized by using Ethereum open source blockchain technology. Also we aim to reward player with a cryptocurrency that is in term exchangeable on decentralized exchange (DEX) and centralized exchange (CEX). 
 
 This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated game tools. It was forked from the Refined GunZ source (https://github.com/Asunaya/RefinedGunz) and updated by the International GunZ (http://igunz.net) private server developers. Then CryptoAdvised forked it to make Gunz a blockchain.
+
+# Other implemented features
+-Anti-cheat (0delay, speedhack, flipmower, lawnmower, insane massive...)
+
+-Anti-shotbot
+
+-Matchserver crashs fix
+
+-Gunz.exe and Matchserver.exe are now merged everyone now become it's own matchserver. 
+(Incomplete: decentralise data management still need to be added)
+
 
 # Building the source for the first time
 
@@ -56,24 +67,21 @@ If you are using Windows Subsystem for Linux, and the source is somwhere in `/mn
 # Launching local test client for the first time
 Requisites:
 
-* Download the server and client files.
-	- [Client files](https://github.com/open-gunz/client)
-	- [Server files](https://github.com/open-gunz/server)
-* Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe, Launcher.exe, and MatchServer.exe in their respective client/server folders.
-* Change IP to `127.0.0.1` in config file --> `C:\Users\[username]\Documents\International GunZ\config.xml`.
-* In the server folder, open `server.ini` file in notepad:
-  - Change the following: `FREELOGINIP`, `KEEPERIP`, `MONITORIP`, `DBAgentIP` to `127.0.0.1`.
-* Launch MatchServer.exe from the server folder.
-* Run GunZ.exe from client folder (DO NOT USE Launcher.exe as it will downgrade to what is placed on the website for patching).
-* You can also run GunZ.exe on Linux using Wine. Currently everything seems to work, but text rendering is broken and text is unreadable.
-* Register a test account within the client and login.
+1. Download the server and client files.
+
+	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases/tag/0.0.0.1)
+
+2. Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe in client folder.
+3. Run GunZ.exe from client folder (DO NOT USE Launcher.exe as it will downgrade to what is placed on the website for patching).
+4. You can also run GunZ.exe on Linux using Wine. Currently everything seems to work, but text rendering is broken and text is unreadable.
+5. Register a test account within the client and login.
 
 # Contact
 Feel free to post any issue in the issues section.  
-You can also reach us on our discord via [this](https://discord.gg/CWjzsu5) link.
+You can also reach us on our discord via [this](https://discord.gg/5QzQmHdzpe) link.
 
 # Credits
-[CryptoAdvised](https://github.com/CryptoAdvised/)(https://github.com/CryptoAdvised/gunz-chain/)
+[CryptoAdvised](https://github.com/CryptoAdvised/) (https://github.com/CryptoAdvised/gunz-chain/)
 
 [Crawly](https://github.com/Asunaya) (https://github.com/Asunaya/RefinedGunz)
 
