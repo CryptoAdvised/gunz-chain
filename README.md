@@ -11,7 +11,7 @@ This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated
 
 -Anti-shotbot
 
--Matchserver crashs fixs
+-Matchserver crashs fix
 
 -Gunz.exe and Matchserver.exe are now merged everyone now become it's own matchserver. (Incomplete: decentralise data management still need to be added)
 
