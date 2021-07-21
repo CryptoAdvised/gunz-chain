@@ -1,7 +1,7 @@
 # gunz-chain
 This project is to make gunz live forever using blockchain imutability. We hope to attain this goal by merging refined gunz client and server, decentralising data management using open source ethereum  blockchain technologie,  applying security patchs regularly, creating a validation censensus base on a gunz "fair-play" algorithme to reward players a tradable token.  If you are interested in making gunz living forever storing it's data on a blockchain and rewarding it's players tradable crypto tokens, then up on the team and help us make gunz great again. 
 
-# gunz-chain Source
+# Source
 It's based on open-gunz, itself based on refined gunz. The goal of this project is to make gunz completely decentralized by using Ethereum open source blockchain technology. Also we aim to reward player with a cryptocurrency that is in term exchangeable on decentralized exchange (DEX) and centralized exchange (CEX). 
 
 This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated game tools. It was forked from the Refined GunZ source (https://github.com/Asunaya/RefinedGunz) and updated by the International GunZ (http://igunz.net) private server developers. Then CryptoAdvised forked it to make Gunz a blockchain.
