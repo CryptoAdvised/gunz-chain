@@ -946,9 +946,9 @@
 			<H>36</H>
 		</BOUNDS>
 		<STRETCH/>
-		<BITMAP type="up">replay_off_kr.tga</BITMAP>
-		<BITMAP type="over">replay_on_kr.tga</BITMAP>
-		<BITMAP type="down">replay_on_kr.tga</BITMAP>
+		<BITMAP type="up">replays.png</BITMAP>
+		<BITMAP type="over">replays_hover.png</BITMAP>
+		<BITMAP type="down">replays_hover.png</BITMAP>
 	</BMBUTTON>
 
 	<!-- BUTTON : 몬스터 도감 -->
