@@ -76,6 +76,8 @@ Requisites:
 4. You can also run GunZ.exe on Linux using Wine. Currently everything seems to work, but text rendering is broken and text is unreadable.
 5. Register a test account within the client and login.
 
+**note: to play on with someone simply change the ip address in config.xml to access the other person server.  Don't forge to forward ports 6000 and 8900.**
+
 # Contact
 Feel free to post any issue in the issues section.  
 You can also reach us on our discord via [this](https://discord.gg/5QzQmHdzpe) link.
