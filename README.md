@@ -70,7 +70,7 @@ Requisites:
 
 # Contact
 Feel free to post any issue in the issues section.  
-You can also reach us on our discord via [this](https://discord.gg/CWjzsu5) link.
+You can also reach us on our discord via [this](https://discord.gg/5QzQmHdzpe) link.
 
 # Credits
 [CryptoAdvised](https://github.com/CryptoAdvised/)(https://github.com/CryptoAdvised/gunz-chain/)
