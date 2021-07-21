@@ -80,7 +80,7 @@ Feel free to post any issue in the issues section.
 You can also reach us on our discord via [this](https://discord.gg/5QzQmHdzpe) link.
 
 # Credits
-[CryptoAdvised](https://github.com/CryptoAdvised/)(https://github.com/CryptoAdvised/gunz-chain/)
+[CryptoAdvised](https://github.com/CryptoAdvised/) (https://github.com/CryptoAdvised/gunz-chain/)
 
 [Crawly](https://github.com/Asunaya) (https://github.com/Asunaya/RefinedGunz)
 
