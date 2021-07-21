@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<XML ID="CharacterInfoFrame">
+	<Schema xmlns="MaietData" xmlns:dt="MaietDataTypes" />
+
+<!--
+   CharacterInfoFrame
+   
+   Last Update : 17/01/2016
+   Autor Codes : Guilherme Gaspar
+   Editor XML  : Bee Nevoth
+-->
+
+
+<!-- FRAME: CharacterInfoFrame -->	
+	<FRAME item="CharacterInfoFrame" >
+		<BOUNDS>
+			<X>200</X>
+			<Y>150</Y>
+			<W>300</W>
+			<H>200</H>
+		</BOUNDS>
+		<ALIGN>
+			<HALIGN>center</HALIGN>
+			<VALIGN>center</VALIGN>
+		</ALIGN>
+		<VISIBLE>false</VISIBLE>
+		<MOVABLE>false</MOVABLE>
+		<RESIZABLE>false</RESIZABLE>
+		<FRAMELOOK>DefaultFrameLook</FRAMELOOK>
+		<TEXT>Informações do Personagem</TEXT>
+	</FRAME>
+	
+	<!-- Labels -->
+	<LABEL item="NameLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>33</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Nome : </TEXT>
+	</LABEL>
+	
+	<LABEL item="ClanLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>50</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Clã : </TEXT>
+	</LABEL>
+	
+	<LABEL item="LevelLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>67</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Level : </TEXT>
+	</LABEL>
+	
+	<LABEL item="ExpLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>84</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Exp : </TEXT>
+	</LABEL>
+	
+	<LABEL item="BountyLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>101</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Bounty : </TEXT>
+	</LABEL>
+	
+	<LABEL item="KillLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>118</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Vitórias : </TEXT>
+	</LABEL>
+	
+	<LABEL item="DeathLabel" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>10</X>
+			<Y>135</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT>Derrotas : </TEXT>
+	</LABEL>
+	
+	<!-- Labels Values -->
+	<LABEL item="NameLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>58</X>
+			<Y>33</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="ClanLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>45</X>
+			<Y>50</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="LevelLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>56</X>
+			<Y>67</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="ExpLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>47</X>
+			<Y>84</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="BountyLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>59</X>
+			<Y>101</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="KillLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>64</X>
+			<Y>118</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<LABEL item="DeathLabelValue" parent="CharacterInfoFrame">
+		<FONT>FONTa9</FONT>
+		<TEXTCOLOR>
+			<R>205</R>
+			<G>205</G>
+			<B>205</B>
+		</TEXTCOLOR>
+		<BOUNDS>
+			<X>67</X>
+			<Y>135</Y>
+			<W>118</W>
+			<H>24</H>
+		</BOUNDS>
+		<TEXT></TEXT>
+	</LABEL>
+	
+	<!-- Character View -->
+	<CHARACTERVIEW item="InformationViewer" parent="CharacterInfoFrame">
+		<BOUNDS>
+			<X>100</X>
+			<Y>10</Y>
+			<W>120</W>
+			<H>163</H>
+		</BOUNDS>
+		<STRETCH/>
+		<VISIBLEEQUIPMENT>true</VISIBLEEQUIPMENT>
+    </CHARACTERVIEW>
+	
+	<!-- Clan Emblem -->
+	<PICTURE item ="ClanInfoEmblem" parent="CharacterInfoFrame">
+		<BOUNDS>
+			<X>200</X>
+			<Y>30</Y>
+			<W>64</W>
+			<H>64</H>
+		</BOUNDS>
+		<STRETCH/>
+		<BITMAP>no_emblem.png</BITMAP>
+	</PICTURE>
+	
+	<!-- Button: Close -->
+	<BUTTON item="CharacterInfoClose" parent="CharacterInfoFrame">
+		<BUTTONLOOK>DefaultButtonLook</BUTTONLOOK>
+		<ANCHORS>
+			<LEFT>true</LEFT>
+			<TOP>true</TOP>
+			<RIGHT>true</RIGHT>
+			<BOTTOM>true</BOTTOM>
+		</ANCHORS>
+		<BOUNDS>
+			<X>180</X>
+			<Y>150</Y>
+			<W>100</W>
+			<H>32</H>
+		</BOUNDS>
+		<DEFAULTKEY>ESC</DEFAULTKEY>
+		<TEXT>Fechar</TEXT>
+	</BUTTON>
+
+</XML>
