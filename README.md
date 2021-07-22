@@ -67,7 +67,7 @@ If you are using Windows Subsystem for Linux, and the source is somwhere in `/mn
 # Launching local test client for the first time
 Requisites:
 
-1. Download the server and client files.
+1. Download the client files.
 
 	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases/tag/0.0.0.1)
 
