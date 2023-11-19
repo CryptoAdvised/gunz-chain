@@ -4,6 +4,8 @@
 #include "ZInterface.h"
 #include "ZLocatorList.h"
 #include "ZGameTypeList.h"
+#include "FileInfo.h"
+#include "ZFilePath.h"
 
 ZConfiguration	g_Configuration;
 ZConfiguration* ZGetConfiguration()		{ return &g_Configuration; }
@@ -12,12 +14,9 @@ ZConfiguration::ZConfiguration()
 {
 	Init();
 
-	strcpy_safe( m_szServerIP, "127.0.0.1");
-	m_nServerPort = 6000;
-	
-	strcpy_safe( m_szBAReportAddr, "www.battlearena.com");
-	strcpy_safe( m_szBAReportDir, "incoming");
-	
+	strcpy_safe( m_szBAReportAddr, "igunz.net");
+	strcpy_safe( m_szBAReportDir, "reports");
+
 	m_nServerCount = 0;
 
 	m_pLocatorList = new ZLocatorList;
@@ -71,9 +70,16 @@ bool ZConfiguration::Load()
 {
 	bool retValue;
 
-#if defined(_PUBLISH) && defined(ONLY_LOAD_MRS_FILES)
-   		MZFile::SetReadMode( MZIPREADFLAG_ZIP | MZIPREADFLAG_MRS | MZIPREADFLAG_MRS2 | MZIPREADFLAG_FILE );
-#endif
+	std::string szConfigPath = GetMyDocumentsPath();
+	szConfigPath += GUNZ_FOLDER;
+	szConfigPath += FILENAME_CONFIG;
+	MakePath(szConfigPath.c_str());
+
+	retValue = LoadConfig(szConfigPath.c_str());
+	if (!retValue) {
+		mlog("Cannot open %s file.\n", FILENAME_CONFIG);
+		return false;
+	}
 
 	if ( !LoadLocale(FILENAME_LOCALE) )
 	{
@@ -87,22 +93,11 @@ bool ZConfiguration::Load()
 		return false;
 	}
 
-	retValue = LoadConfig(FILENAME_CONFIG);
-
-#if defined(_PUBLISH) && defined(ONLY_LOAD_MRS_FILES)
-		MZFile::SetReadMode( MZIPREADFLAG_MRS2 );
-#endif
-
 	if (!LoadSystem(FILENAME_SYSTEM))
 	{
 		mlog( "Cannot open %s file.\n", FILENAME_SYSTEM);
 		return false;
 	}
-
-	ConvertMacroStrings();
-
-	if (!retValue)
-		return false;
 
 	return retValue;
 }
@@ -188,7 +183,7 @@ bool ZConfiguration::LoadGameTypeCfg(const char* szFileName)
 
 		if (szTagName[0] == '#') continue;
 
-		if ( !_stricmp( szTagName, ZTOK_GAME_TYPE)) 
+		if ( !_stricmp( szTagName, ZTOK_GAME_TYPE))
 		{
 			int nID = 0;
 			chrElement.GetAttribute( &nID, "id");
@@ -342,7 +337,7 @@ bool ZConfiguration::LoadConfig(const char* szFileName)
 	mlog( "Load Config from file : %s", szFileName );
 
 	xmlConfig.Create();
-	if (!xmlConfig.LoadFromFile(szFileName)) 
+	if (!xmlConfig.LoadFromFile(szFileName))
 	{
 		mlog( "- FAIL\n");
 		xmlConfig.Destroy();
@@ -649,7 +644,7 @@ bool ZConfiguration::SaveToFile(const char *szFileName, const char* szHeader)
 	// Control
 	{
 		auto Section = ConfigSection(RootElement, ZTOK_KEYBOARD);
-		
+
 		for (auto&& ActionKey : m_Keyboard.ActionKeys)
 		{
 			if (ActionKey.szName[0] == 0)
@@ -733,27 +728,30 @@ bool ZConfiguration::SaveToFile(const char *szFileName, const char* szHeader)
 
 void ZConfiguration::Init()
 {
-	m_Video.FullscreenMode = FullscreenType::Windowed;
-	auto Width = GetSystemMetrics(SM_CXSCREEN);
+	m_Video.FullscreenMode = FullscreenType::Fullscreen;
+	/* auto Width = GetSystemMetrics(SM_CXSCREEN);
 	if (Width == 0)
 		Width = 1024;
 	auto Height = GetSystemMetrics(SM_CYSCREEN);
 	if (Height == 0)
-		Height = 768;
-	m_Video.nWidth = Width/2;
-	m_Video.nHeight = Height/2;
+		Height = 768; */
+	m_Video.nWidth = 1024;
+	m_Video.nHeight = 768;
 	m_Video.nColorBits = 32;
 	m_Video.nGamma = 255;
-	m_Video.bShader		= true;
-	m_Video.bLightMap	= false;
-	m_Video.bReflection	= true;
+	m_Video.bReflection = true;
+	m_Video.bLightMap	= true;
+	m_Video.bDynamicLight = true;
+	m_Video.bShader = true;
 	// 0 = high
 	m_Video.nCharTexLevel = 0;
 	m_Video.nMapTexLevel = 0;
 	m_Video.nEffectLevel = Z_VIDEO_EFFECT_HIGH;
 	m_Video.nTextureFormat = 1;
 	m_Video.bTerrible = false;
-	
+	bCamFix = true;
+	InterfaceFix = false;
+
 	m_Audio.bBGMEnabled = true;
 	m_Audio.fBGMVolume	= 0.3f;
 	m_Audio.bBGMMute	= false;
@@ -764,11 +762,12 @@ void ZConfiguration::Init()
 	m_Audio.bInverse	= false;
 	m_Audio.bHWMixing	= false;
 	m_Audio.bHitSound	= true;
+	m_Audio.bNarrationSound = true;
 
-	m_Mouse.fSensitivity = 1.f;
+	m_Mouse.fSensitivity = 0.5f;
 	m_Mouse.bInvert = false;
 
-	m_Joystick.fSensitivity = 1.f;
+	m_Joystick.fSensitivity = 0.5f;
 	m_Joystick.bInvert = false;
 
 	for (int i = 0; i < int(std::size(m_Macro.szMacro)); ++i)
@@ -776,14 +775,15 @@ void ZConfiguration::Init()
 
 	m_Etc.nNetworkPort1 = 7700;
 	m_Etc.nNetworkPort2 = 7800;
-	m_Etc.nCrossHair = 0;
+	m_Etc.nCrossHair = 2;
 	m_Etc.bInGameNoChat = false;
 
 	m_bOptimization = false;
-	
+	FastWeaponCycle = false;
+
 	memset(m_szServerIP, 0, sizeof(m_szServerIP));
 	strcpy_safe(m_szServerIP, "127.0.0.1");
-	m_nServerPort = 4738;
+	m_nServerPort = 6000;
 	strcpy_safe(m_szInterfaceSkinName, DEFAULT_INTERFACE_SKIN);
 
 	LoadDefaultKeySetting();
@@ -793,7 +793,7 @@ void ZConfiguration::Init()
 	m_Locale.szHomepageUrl[0] = 0;
 	m_Locale.szHomepageTitle[0] = 0;
 	strcpy_safe(m_Locale.szEmblemURL, "");
-	strcpy_safe(m_Locale.szCashShopURL, "http://www.gunzonline.com/");
+	strcpy_safe(m_Locale.szCashShopURL, "http://www.igunz.net/");
 	m_Locale.bIMESupport = false;
 
 	m_bViewGameChat = true;
@@ -814,8 +814,8 @@ void ZConfiguration::LoadDefaultKeySetting()
 		{"Item1",		0x05, -1},	// '4'
 		{"Item2",		0x06, -1},	// '5'
 
-		{"PrevousWeapon",0x10, -1},	// 'q'
-		{"NextWeapon", 0x12,-1},	// 'e'
+		{"PreviousWeapon",0x10,257},	// 'q' or 'scroll up`
+		{"NextWeapon", 0x12,256},	// 'e' or 'scroll down`
 		{"Reload",		0x13,-1},	// 'r'
 		{"Jump",		0x39,-1},	// space
 		{"Score",		0x0f,-1},	// tab
@@ -833,12 +833,12 @@ void ZConfiguration::LoadDefaultKeySetting()
 		{"Defence",		0x2a,-1},	// 'shift'
 		{"ToggleChat",	0x2f,-1},	// 'v'
 
-		{"UseWeapon",	0x1D,258},	// 'ctrl' or	mouse LButton
-		{"UseWeapon2", 259, -1},		// mouse RButton
-		{ "ShowFullChat", 44, -1 },
-		{ "VoiceChat", 37, -1 },
-		{ "Chat", DIK_RETURN, -1},
-		{ "TeamChat", DIK_APOSTROPHE, -1},
+		{"UseWeapon",	0x1D,258},	// 'ctrl' or mouse LButton
+		{"UseWeapon2", 259, -1},	// mouse RButton
+		{"ShowFullChat", 44, -1 },	// 'z'
+		{"VoiceChat", 37, -1 },	// 'k'
+		{"Chat", DIK_RETURN, -1},	// 'enter'
+		{"TeamChat", DIK_APOSTROPHE, -1},	// '''
 		// Ãß°¡ by Á¤µ¿¼· @ 2006/3/16
 	};
 

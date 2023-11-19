@@ -6,9 +6,11 @@
 #include "ZActionDef.h"
 #include "RealSpace2.h"
 #include "SafeString.h"
+#include "FileInfo.h"
+#include "ZFilePath.h"
 
 #define FILENAME_LOCALE		"system/locale.xml"
-#define FILENAME_CONFIG		"config.xml"
+#define FILENAME_CONFIG		"/config.xml"
 #define FILENAME_SYSTEM		"system/system.xml"
 #define FILENAME_GTCFG		"system/gametypecfg.xml"
 
@@ -155,7 +157,13 @@ public:
 	bool LoadSystem(const char* szFileName);
 	bool LoadConfig(const char* szFileName);
 	bool Save() { return Save(GetLocale()->szXmlHeader); }
-	bool Save( const char* szHeader)	{ return SaveToFile(FILENAME_CONFIG, szHeader); }
+	bool Save( const char* szHeader)	{
+		std::string szConfigPath = GetMyDocumentsPath();
+		szConfigPath += GUNZ_FOLDER;
+		szConfigPath += FILENAME_CONFIG;
+		MakePath(szConfigPath.c_str());
+		return SaveToFile(szConfigPath.c_str(), szHeader);
+	}
 	bool SaveToFile(const char*szFileName, const char* szHeader);
 
 	ZLocatorList* GetLocatorList()	{ return m_pLocatorList; }
@@ -305,7 +313,7 @@ ZConfiguration*	ZGetConfiguration();
 #define ZTOK_VIDEO_LIGHTMAP		"LIGHTMAP"
 #define ZTOK_VIDEO_DYNAMICLIGHT	"DYNAMICLIGHT"
 #define ZTOK_VIDEO_SHADER		"SHADER"
-#define ZTOK_VIDEO_CHARTEXLEVEL	"CHARACTORTEXTURELEVEL"
+#define ZTOK_VIDEO_CHARTEXLEVEL	"CHARACTERTEXTURELEVEL"
 #define ZTOK_VIDEO_MAPTEXLEVEL	"MAPTEXTURELEVEL"
 #define ZTOK_VIDEO_EFFECTLEVEL	"EFFECTLEVEL"
 #define ZTOK_VIDEO_TEXTUREFORMAT "TEXTUREFORMAT"
