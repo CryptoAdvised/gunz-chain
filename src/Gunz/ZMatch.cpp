@@ -85,7 +85,7 @@ void ZMatch::ProcessRespawn()
 	if (!IsWaitForRoundEnd() && g_pGame->m_pMyCharacter)
 	{
 		static bool bLastDead = false;
-		if (g_pGame->m_pMyCharacter->IsDie())
+		if (g_pGame->m_pMyCharacter->IsDead())
 		{
 			if (bLastDead == false)
 			{
@@ -116,7 +116,7 @@ void ZMatch::ProcessRespawn()
 
 		}
 
-		bLastDead = g_pGame->m_pMyCharacter->IsDie();
+		bLastDead = g_pGame->m_pMyCharacter->IsDead();
 	}
 
 }
@@ -321,7 +321,7 @@ void ZMatch::SetRoundState(MMATCH_ROUNDSTATE nRoundState, int nArg)
 
 #ifndef _PUBLISH
 	char szLog[128];
-	sprintf_safe(szLog, "RoundState:%d À¸·Î ¹Ù²ñ\n", m_nRoundState);
+	sprintf_safe(szLog, "RoundState:%d ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½\n", m_nRoundState);
 	OutputDebugString(szLog);
 #endif
 
@@ -405,7 +405,7 @@ void ZMatch::GetTeamAliveCount(int* pnRedTeam, int* pnBlueTeam)
 			itor != g_pGame->m_CharacterManager.end(); ++itor)
 		{
 			ZCharacter* pCharacter = (*itor).second;
-			if (!pCharacter->IsDie())
+			if (!pCharacter->IsDead())
 			{
 				if (pCharacter->GetTeamID() == 0)
 				{
@@ -425,7 +425,7 @@ void ZMatch::GetTeamAliveCount(int* pnRedTeam, int* pnBlueTeam)
 
 void ZMatch::RespawnSolo(bool bForce)
 {
-	if ((!IsWaitForRoundEnd() && g_pGame->m_pMyCharacter->IsDie()) || bForce)
+	if ((!IsWaitForRoundEnd() && g_pGame->m_pMyCharacter->IsDead()) || bForce)
 	{
 		SoloSpawn();
 	}
@@ -476,7 +476,7 @@ int ZMatch::GetRemainedSpawnTime()
 	{
 		if (!IsWaitForRoundEnd())
 		{
-			if (g_pGame->m_pMyCharacter->IsDie())
+			if (g_pGame->m_pMyCharacter->IsDead())
 			{
 				if (m_nSoloSpawnTime < 0) return -1;
 				int nElapsedTime = m_nSoloSpawnTime;

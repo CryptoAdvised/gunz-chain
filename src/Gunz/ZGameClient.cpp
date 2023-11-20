@@ -1363,7 +1363,6 @@ void ZGameClient::OnGameLevelUp(const MUID& uidChar)
 			char temp[256] = "";
 			ZTransMsg(temp, MSG_GAME_LEVEL_UP, 1, pCharacter->GetUserAndClanName());
 			ZChatOutput(MCOLOR(ZCOLOR_GAME_INFO), temp);
-			ZGetSoundEngine()->PlaySound("level_up"); //Levelup sound 
 		}
 	}
 }
@@ -1650,7 +1649,7 @@ void ZGameClient::RequestGameSuicide()
 	ZMyCharacter* pMyCharacter = pGame->m_pMyCharacter;
 	if (!pMyCharacter) return;
 
-	if ((!pMyCharacter->IsDie()) && (pGame->GetMatch()->GetRoundState() == MMATCH_ROUNDSTATE_PLAY))
+	if ((!pMyCharacter->IsDead()) && (pGame->GetMatch()->GetRoundState() == MMATCH_ROUNDSTATE_PLAY))
 	{
 		pMyCharacter->SetLastDamageType(ZD_NONE);
 
