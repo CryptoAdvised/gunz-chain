@@ -355,7 +355,7 @@ DWORD g_dwLastAnimationTime=GetGlobalTimeMS();
 void ZCharacter::SetAnimationLower(ZC_STATE_LOWER nAni)
 {
 	if (m_bInitialized == false) return;
-	if ((IsDie()) && (IsHero())) return;
+	if ((IsDead()) && (IsHero())) return;
 
 	if(nAni==m_AniState_Lower) return;
 	_ASSERT(nAni>=0 && nAni<ZC_STATE_LOWER_END);
@@ -388,7 +388,7 @@ void ZCharacter::SetAnimationLower(ZC_STATE_LOWER nAni)
 void ZCharacter::SetAnimationUpper(ZC_STATE_UPPER nAni)
 {
 	if (m_bInitialized == false) return;
-	if ((IsDie()) && (IsHero())) return;
+	if ((IsDead()) && (IsHero())) return;
 
 	if(nAni==m_AniState_Upper) 	return;
 
@@ -433,101 +433,202 @@ void ZCharacter::UpdateLoadAnimation()
 	}
 }
 
-void ZCharacter::UpdateDirection(float fDelta, const v3& Direction)
+// ported from 1.5, this replaces UpdateDirection
+void ZCharacter::UpdateMotion(float fDelta)
 {
-	if (m_bInitialized==false) return;
+	if (m_bInitialized == false) return;
+	// ¡°«¡∑Œ ∏º« πŸ≤Ÿ±‚ - ¿Ã¿¸ªÛ≈¬ πÈæ˜
+	// ¡°«¡¥¬ æÓ∂≤ ªÛ≈¬ø°º≠µÁ ∏º«¿ÃπŸ≤ºˆ¿÷¿∏π«∑Œ..
+	// run , idle
 
-	if (IsDie()) {
-		m_pVMesh->m_vRotXYZ = { 0, 0, 0 };
+	// ¿⁄Ω≈¿« ≈∏∞ŸπÊ«‚ø° ƒ≥∏Ø≈Õ¿« πÊ«‚¿ª ∏¬√·¥Ÿ..
+	if (IsDead()) { //«„∏Æ ∫Ø«¸ æ¯¥Ÿ~
+
+		m_pVMesh->m_vRotXYZ.x = 0.f;
+		m_pVMesh->m_vRotXYZ.y = 0.f;
+		m_pVMesh->m_vRotXYZ.z = 0.f;
+
 		return;
 	}
 
-	auto&& s = *ZGetGameClient()->GetMatchStageSetting();
-	if (s.IsVanillaMode() || s.InvulnerabilityStates())
+	if ((m_AniState_Lower == ZC_STATE_LOWER_IDLE1) ||
+		(m_AniState_Lower == ZC_STATE_LOWER_RUN_FORWARD) ||
+		(m_AniState_Lower == ZC_STATE_LOWER_RUN_BACK))
 	{
-		if ((m_AniState_Lower == ZC_STATE_LOWER_IDLE1) ||
-			(m_AniState_Lower == ZC_STATE_LOWER_RUN_FORWARD) ||
-			(m_AniState_Lower == ZC_STATE_LOWER_RUN_BACK))
+		m_Direction = m_TargetDir;
+
+		rvector targetdir = m_TargetDir;
+		targetdir.z = 0;
+		Normalize(targetdir);
+
+		rvector dir = m_Accel;
+		dir.z = 0;
+
+		if (Magnitude(dir) < 10.f) 
+			dir = targetdir;
+		else
+			Normalize(dir);
+
+		bool bInversed = false;
+		if (DotProduct(targetdir, dir) < -cos(PI_FLOAT / 4.f) + 0.01f)
 		{
-			m_Direction = m_TargetDir;
+			dir = -dir;
+			bInversed = true;
+		}
 
-			rvector targetdir = m_TargetDir;
-			targetdir.z = 0;
-			Normalize(targetdir);
+		// fAngleLower ¥¬ «ˆ¿Á πﬂπÊ«‚∞˙ «ÿæﬂ«œ¥¬ πﬂπÊ«‚¿« ∞¢µµ ¬˜¿Ã
+		float fAngleLower = GetAngleOfVectors(dir, m_DirectionLower);
 
-			rvector dir = m_Accel;
-			dir.z = 0;
-
-			if (Magnitude(dir) < 10.f)
-				dir = targetdir;
-			else
-				Normalize(dir);
-
-			bool bInversed = false;
-			if (DotProduct(targetdir, dir) < -cos(PI_FLOAT / 4.f) + 0.01f)
-			{
-				dir = -dir;
-				bInversed = true;
-			}
-
-			float fAngleLower = GetAngleOfVectors(dir, m_DirectionLower);
-
-			rmatrix mat;
+		rmatrix mat;
 
 #define ROTATION_SPEED	400.f
 
-			if (fAngleLower > 5.f / 180.f*PI_FLOAT)
-			{
-				mat = RGetRotZRad(max(-ROTATION_SPEED*fDelta / 180.f*PI_FLOAT, -fAngleLower));
-				m_DirectionLower = m_DirectionLower * mat;
-			}
 
-			if (fAngleLower < -5.f / 180.f*PI_FLOAT)
-			{
-				mat = RGetRotZRad(min(ROTATION_SPEED*fDelta / 180.f*PI_FLOAT, -fAngleLower));
-				m_DirectionLower = m_DirectionLower * mat;
-			}
-
-			float fAngle = GetAngleOfVectors(m_TargetDir, m_DirectionLower);
-
-			if (fAngle < -65.f / 180.f*PI_FLOAT)
-			{
-				fAngle = -65.f / 180.f*PI_FLOAT;
-				mat = RGetRotZRad(-65.f / 180.f*PI_FLOAT);
-				m_DirectionLower = m_Direction * mat;
-			}
-
-			if (fAngle >= 65.f / 180.f*PI_FLOAT)
-			{
-				fAngle = 65.f / 180.f*PI_FLOAT;
-				mat = RGetRotZRad(65.f / 180.f*PI_FLOAT);
-				m_DirectionLower = m_Direction * mat;
-			}
-
-			m_pVMesh->m_vRotXYZ.x = -fAngle * 180 / PI_FLOAT *.9f;
-
-			m_pVMesh->m_vRotXYZ.y = (m_TargetDir.z + 0.05f) * 50.f;
-		}
-		else
+		if (fAngleLower < -5.f / 180.f * PI_FLOAT)
 		{
-			m_Direction = m_TargetDir;
-			m_DirectionLower = m_Direction;
-
-			m_pVMesh->m_vRotXYZ.x = 0.f;
-			m_pVMesh->m_vRotXYZ.y = 0.f;
-			m_pVMesh->m_vRotXYZ.z = 0.f;
+			mat = RGetRotZRad(min(ROTATION_SPEED * fDelta / 180.f * PI_FLOAT, -fAngleLower));
+			m_DirectionLower = m_DirectionLower * mat;
 		}
+
+		// ¿œ¡§∞¢µµ ¿ÃªÛµ«∏È «œ√º∏¶ ∆≤æÓ¡ÿ¥Ÿ
+		if (fAngleLower > 5.f / 180.f * PI_FLOAT)
+		{
+			mat = RGetRotZRad(max(-ROTATION_SPEED * fDelta / 180.f * PI_FLOAT, -fAngleLower));
+			m_DirectionLower = m_DirectionLower * mat;
+		}
+
+		// ªÛ√º∞° «‚«ÿæﬂ «œ¥¬ πÊ«‚¿∫ æ¡¶≥™ ≈∏∞ŸπÊ«‚
+		float fAngle = GetAngleOfVectors(m_TargetDir, m_DirectionLower);
+
+		// ±◊∑Ø≥™ «œ√ºøÕ¿« ∞¢µµ∏¶ «◊ªÛ ¿œ¡§∞¢µµ ¿Ã«œ∑Œ ¿Ø¡ˆ«—¥Ÿ.
+
+		if (fAngle < -65.f / 180.f * PI_FLOAT)
+		{
+			fAngle = -65.f / 180.f * PI_FLOAT;
+			mat = RGetRotZRad(-65.f / 180.f * PI_FLOAT);
+			m_DirectionLower = m_Direction * mat;
+		}
+
+		if (fAngle >= 65.f / 180.f * PI_FLOAT)
+		{
+			fAngle = 65.f / 180.f * PI_FLOAT;
+			mat = RGetRotZRad(65.f / 180.f * PI_FLOAT);
+			m_DirectionLower = m_Direction * mat;
+		}
+
+		m_pVMesh->m_vRotXYZ.x = -fAngle * 180 / PI_FLOAT * .9f;
+
+		// Ω«¡¶∫∏¥Ÿ æ‡∞£ ∞Ì∞≥∏¶ µÈæÓ¡ÿ¥Ÿ :)
+		m_pVMesh->m_vRotXYZ.y = (m_TargetDir.z + 0.05f) * 50.f;
 	}
-	else
+	else // ¥ﬁ∏Æ±‚/∞°∏∏¿÷±‚µÓ¿« æ÷¥œ∏ﬁ¿Ãº«¿Ã æ∆¥œ∏È «„∏Ææ»µπ∏∞¥Ÿ.
 	{
-		m_Direction = Direction;
+		m_Direction = m_TargetDir;
 		m_DirectionLower = m_Direction;
 
 		m_pVMesh->m_vRotXYZ.x = 0.f;
-		m_pVMesh->m_vRotXYZ.y = (Direction.z + 0.05f) * 50.f;
+		m_pVMesh->m_vRotXYZ.y = 0.f;
 		m_pVMesh->m_vRotXYZ.z = 0.f;
 	}
 }
+
+//void ZCharacter::UpdateDirection(float fDelta, const v3& Direction)
+//{
+//	if (m_bInitialized==false) return;
+//
+//	if (IsDead()) {
+//		m_pVMesh->m_vRotXYZ = { 0, 0, 0 };
+//		return;
+//	}
+//
+//	auto&& s = *ZGetGameClient()->GetMatchStageSetting();
+//	if ((s.IsRefinedMode() && s.IsGladOnly() == false))
+//	{
+//		m_Direction = Direction;
+//		m_DirectionLower = m_Direction;
+//
+//		m_pVMesh->m_vRotXYZ.x = 0.f;
+//		m_pVMesh->m_vRotXYZ.y = (Direction.z + 0.05f) * 50.f;
+//		m_pVMesh->m_vRotXYZ.z = 0.f;
+//	}
+//	else
+//	{
+//		if ((m_AniState_Lower == ZC_STATE_LOWER_IDLE1) ||
+//			(m_AniState_Lower == ZC_STATE_LOWER_RUN_FORWARD) ||
+//			(m_AniState_Lower == ZC_STATE_LOWER_RUN_BACK))
+//		{
+//			m_Direction = m_TargetDir;
+//
+//			rvector targetdir = m_TargetDir;
+//			targetdir.z = 0;
+//			Normalize(targetdir);
+//
+//			rvector dir = m_Accel;
+//			dir.z = 0;
+//
+//			if (Magnitude(dir) < 10.f)
+//				dir = targetdir;
+//			else
+//				Normalize(dir);
+//
+//			bool bInversed = false;
+//			if (DotProduct(targetdir, dir) < -cos(PI_FLOAT / 4.f) + 0.01f)
+//			{
+//				dir = -dir;
+//				bInversed = true;
+//			}
+//
+//			float fAngleLower = GetAngleOfVectors(dir, m_DirectionLower);
+//
+//			rmatrix mat;
+//
+//#define ROTATION_SPEED	400.f
+//
+//			if (fAngleLower > 5.f / 180.f*PI_FLOAT)
+//			{
+//				mat = RGetRotZRad(max(-ROTATION_SPEED * fDelta / 180.f*PI_FLOAT, -fAngleLower));
+//				m_DirectionLower = m_DirectionLower * mat;
+//			}
+//
+//			if (fAngleLower < -5.f / 180.f*PI_FLOAT)
+//			{
+//				mat = RGetRotZRad(min(ROTATION_SPEED*fDelta / 180.f*PI_FLOAT, -fAngleLower));
+//				m_DirectionLower = m_DirectionLower * mat;
+//			}
+//
+//			float fAngle = GetAngleOfVectors(m_TargetDir, m_DirectionLower);
+//
+//			if (fAngle < -65.f / 180.f*PI_FLOAT)
+//			{
+//				fAngle = -65.f / 180.f*PI_FLOAT;
+//				mat = RGetRotZRad(-65.f / 180.f*PI_FLOAT);
+//				m_DirectionLower = m_Direction * mat;
+//			}
+//
+//			if (fAngle >= 65.f / 180.f*PI_FLOAT)
+//			{
+//				fAngle = 65.f / 180.f*PI_FLOAT;
+//				mat = RGetRotZRad(65.f / 180.f*PI_FLOAT);
+//				m_DirectionLower = m_Direction * mat;
+//			}
+//
+//			m_pVMesh->m_vRotXYZ.x = -fAngle * 180 / PI_FLOAT * .9f;
+//
+//			m_pVMesh->m_vRotXYZ.y = (m_TargetDir.z + 0.05f) * 50.f;
+//		}
+//		else
+//		{
+//			m_Direction = m_TargetDir;
+//			m_DirectionLower = m_Direction;
+//
+//			m_pVMesh->m_vRotXYZ.x = 0.f;
+//			m_pVMesh->m_vRotXYZ.y = 0.f;
+//			m_pVMesh->m_vRotXYZ.z = 0.f;
+//		}
+//
+//
+//	}
+//}
 
 static void GetDTM(bool* pDTM,int mode,bool isman)
 {
@@ -650,7 +751,7 @@ void ZCharacter::UpdateSpWeapon()
 	}
 }
 
-bool ZCharacter::IsMan() 
+bool ZCharacter::IsMan() const
 {
 	if(m_pVMesh) {
 		if(m_pVMesh->m_pMesh) {
@@ -726,7 +827,7 @@ void ZCharacter::OnDraw()
 	if (!m_bHero && ZGetGame()->GetMatch()->GetMatchType() == MMATCH_GAMETYPE_SKILLMAP)
 		MaxVisibility = 0.4f;
 
-	if(IsDie())
+	if(IsDead())
 	{
 		// If we are dead, fade out
 		constexpr auto TRAN_AFTER = 3.0f;
@@ -935,14 +1036,15 @@ void ZCharacter::OnUpdate(float fDelta)
 	}
 
 	UpdateSound();
+	UpdateMotion(fDelta);
 
 	if( m_pVMesh && Enable_Cloth && m_pVMesh->isChestClothMesh() )
 	{
-		if(IsDie())
+		if(IsDead())
 		{
-			rvector force = rvector( 0,0,-150);
-			m_pVMesh->UpdateForce( force);
-			m_pVMesh->SetClothState( CHARACTER_DIE_STATE );
+			rvector force = rvector(0, 0, -150);
+			m_pVMesh->UpdateForce(force);
+			m_pVMesh->SetClothState(CHARACTER_DIE_STATE );
 		}
 		else
 		{
@@ -951,54 +1053,46 @@ void ZCharacter::OnUpdate(float fDelta)
 			m_pVMesh->UpdateForce( force );
 		}
 	}
+	
+	rvector vRot(0.0f, 0.0f, 0.0f);;
+	rvector vProxyDirection(0.0f, 0.0f, 0.0f);
 
-	v3 ProxyDirection;
-
-	ZObserver *pObserver = ZGetGameInterface()->GetCombatInterface()->GetObserver();
-	if (!pObserver->IsVisible())
-	{
-		UpdateDirection(fDelta, m_TargetDir);
-		m_vProxyPosition = m_Position;
-		ProxyDirection = m_DirectionLower;
-
-		v3 dir = ProxyDirection;
-	}
-	else
+	ZObserver *pObserver = ZGetCombatInterface()->GetObserver();
+	if (pObserver->IsVisible())
 	{
 		rvector dir;
 		if (!GetHistory(&m_vProxyPosition, &dir, g_pGame->GetTime() - pObserver->GetDelay()))
 			return;
 
-		if (ZGetGameClient()->GetMatchStageSetting()->IsVanillaMode())
 		{
-			ProxyDirection = m_DirectionLower;
+			vProxyDirection = m_DirectionLower;
 
-			float fAngle = GetAngleOfVectors(dir, ProxyDirection);
+			float fAngle = GetAngleOfVectors(dir, vProxyDirection);
 
-			rvector vRot;
-			vRot.x = -fAngle*180/ PI_FLOAT *.9f;
-			vRot.y = (dir.z+0.05f) * 50.f;
+			vRot.x = -fAngle * 180 / PI_FLOAT * .9f;
+			vRot.y = (dir.z + 0.05f) * 50.f;
 			vRot.z = 0.f;
 
 			m_pVMesh->m_vRotXYZ = vRot;
 		}
-		else
-			ProxyDirection = dir;
-
-		UpdateDirection(fDelta, dir);
+		//UpdateDirection(fDelta, dir);
+	}
+	else {
+		m_vProxyPosition = GetPosition();
+		vProxyDirection = m_DirectionLower;
 	}
 
-	if(IsDie()) {
-		ProxyDirection = m_Direction;
+	if(IsDead()) {
+		vProxyDirection = m_Direction;
 	}
 
-	ProxyDirection.z = 0;
-	Normalize(ProxyDirection);
+	vProxyDirection.z = 0;
+	Normalize(vProxyDirection);
 
 	if (m_nVMID == -1) return;
 
 	rmatrix world;
-	MakeWorldMatrix(&world, rvector(0, 0, 0), ProxyDirection, rvector(0, 0, 1));
+	MakeWorldMatrix(&world, rvector(0, 0, 0), vProxyDirection, rvector(0, 0, 1));
 
 	rvector MeshPosition;
 
@@ -1011,13 +1105,13 @@ void ZCharacter::OnUpdate(float fDelta)
 
 		if(m_AniState_Lower==ZC_STATE_LOWER_RUN_WALL)
 		{
-			rvector headpos = rvector(0.f,0.f,0.f);
+			rvector headpos = rvector(0.f, 0.f, 0.f);
 
 			if(m_pVMesh) {
 				AniFrameInfo* pAniLow = m_pVMesh->GetFrameInfo(ani_mode_lower);
 				AniFrameInfo* pAniUp = m_pVMesh->GetFrameInfo(ani_mode_upper);
-				m_pVMesh->m_pMesh->SetAnimation( pAniLow->m_pAniSet,pAniUp->m_pAniSet );
-				m_pVMesh->m_pMesh->SetFrame( pAniLow->m_nFrame , pAniUp->m_nFrame);
+				m_pVMesh->m_pMesh->SetAnimation(pAniLow->m_pAniSet, pAniUp->m_pAniSet);
+				m_pVMesh->m_pMesh->SetFrame(pAniLow->m_nFrame, pAniUp->m_nFrame);
 				m_pVMesh->m_pMesh->SetMeshVis(m_pVMesh->m_fVis);
 				m_pVMesh->m_pMesh->SetVisualMesh(m_pVMesh);
 
@@ -1050,7 +1144,7 @@ void ZCharacter::OnUpdate(float fDelta)
 	else
 		MeshPosition = m_vProxyPosition;
 
-	MakeWorldMatrix(&world, MeshPosition, ProxyDirection, rvector(0, 0, 1));
+	MakeWorldMatrix(&world, MeshPosition, vProxyDirection, rvector(0, 0, 1));
 	m_pVMesh->SetWorldMatrix(world);
 
 	rvector cpos = ZApplication::GetGameInterface()->GetCamera()->GetPosition();
@@ -1064,13 +1158,11 @@ void ZCharacter::OnUpdate(float fDelta)
 
 	CheckLostConn();
 
-	if(m_bCharging && 
-		(m_AniState_Lower!=ZC_STATE_CHARGE && 
-		m_AniState_Lower!=ZC_STATE_LOWER_ATTACK1)) {
+	if(m_bCharging && (m_AniState_Lower!=ZC_STATE_CHARGE && m_AniState_Lower!=ZC_STATE_LOWER_ATTACK1)) {
 		m_bCharging = false;
 	}
 
-	if(m_bCharged && g_pGame->GetTime()>m_fChargedFreeTime) {
+	if(m_bCharged && g_pGame->GetTime() > m_fChargedFreeTime) {
 		m_bCharged = false;
 	}
 
@@ -1117,7 +1209,7 @@ void ZCharacter::UpdateVelocity(float fDelta)
 	if(fSpeed>max_speed)
 		fSpeed=max_speed;
 
-	bool bTumble= !IsDie() && (m_bTumble ||
+	bool bTumble= !IsDead() && (m_bTumble ||
 		(ZC_STATE_LOWER_TUMBLE_FORWARD<=m_AniState_Lower && m_AniState_Lower<=ZC_STATE_LOWER_TUMBLE_LEFT));
 
 	if(m_bLand && !m_bWallJump && !bTumble)
@@ -1126,7 +1218,7 @@ void ZCharacter::UpdateVelocity(float fDelta)
 		forward.z=0;
 		Normalize(forward);
 
-		// ÏµúÎåÄÍ∞íÏùÑ ÎπÑÏú®Î°ú Ï†úÏñ¥ÌïúÎã§.
+		// √÷¥Î∞™¿ª ∫Ò¿≤∑Œ ¡¶æÓ«—¥Ÿ.
 		float run_speed = RUN_SPEED * fRatio;
 		float back_speed = BACK_SPEED * fRatio;
 		float stop_formax_speed = STOP_FORMAX_SPEED * (1/fRatio);  
@@ -1146,10 +1238,7 @@ void ZCharacter::UpdateVelocity(float fDelta)
 	if(IS_ZERO(Magnitude(m_Accel)) && m_bLand && !m_bWallJump && !m_bWallJump2 && !bTumble
 		&& (!m_bBlast || m_nBlastType != 1))
 		fSpeed = std::max(fSpeed-STOP_SPEED*fDelta,0.0f);
-	
-	//Speedhack fix
-	if(fSpeed > 1500.0f){fSpeed = 630.0f;}
-	
+
 	SetVelocity(dir.x*fSpeed, dir.y*fSpeed, GetVelocity().z);
 }
 
@@ -1224,9 +1313,9 @@ void ZCharacter::OnChangeWeapon(MMatchItemDesc* Weapon)
 		if( eq_wd_katana == type )
 		{
 #ifdef _BIRDSOUND
-			ZGetSoundEngine()->PlaySoundCharacter("fx_blade_sheath",m_Position,IsObserverTarget());
+			ZGetSoundEngine()->PlaySoundCharacter("fx_blade_sheath", m_Position, IsObserverTarget());
 #else
-			ZGetSoundEngine()->PlaySound("fx_blade_sheath",m_Position,IsObserverTarget());
+			ZGetSoundEngine()->PlaySound("fx_blade_sheath", m_Position, IsObserverTarget());
 #endif
 		}
 		else if( (eq_wd_dagger == type) || (eq_ws_dagger == type) )
@@ -1240,24 +1329,24 @@ void ZCharacter::OnChangeWeapon(MMatchItemDesc* Weapon)
 		else if( eq_wd_sword == type )
 		{
 #ifdef _BIRDSOUND
-			ZGetSoundEngine()->PlaySoundCharacter("fx_dagger_sheath",m_Position,IsObserverTarget());
+			ZGetSoundEngine()->PlaySoundCharacter("fx_dagger_sheath", m_Position,IsObserverTarget());
 #else
-			ZGetSoundEngine()->PlaySound("fx_dagger_sheath",m_Position, IsObserverTarget());
+			ZGetSoundEngine()->PlaySound("fx_dagger_sheath", m_Position, IsObserverTarget());
 #endif
 		}
 		else if( eq_wd_blade == type )
 		{
 #ifdef _BIRDSOUND
-			ZGetSoundEngine()->PlaySoundCharacter("fx_dagger_sheath",m_Position,IsObserverTarget());
+			ZGetSoundEngine()->PlaySoundCharacter("fx_dagger_sheath", m_Position, IsObserverTarget());
 #else
-			ZGetSoundEngine()->PlaySound("fx_dagger_sheath",m_Position, IsObserverTarget());
+			ZGetSoundEngine()->PlaySound("fx_dagger_sheath", m_Position, IsObserverTarget());
 #endif
 		}
 	}
 	
 }
 
-static const char* GetPartsNextName(RMeshPartsType ptype,RVisualMesh* pVMesh,bool bReverse)
+static const char* GetPartsNextName(RMeshPartsType ptype, RVisualMesh* pVMesh, bool bReverse)
 {
 	static bool bFirst = true;
 	static vector<RMeshNode*> g_table[6*2];
@@ -1397,7 +1486,7 @@ bool ZCharacter::GetHistory(rvector *pos, rvector *direction, float fTime, rvect
 	Info.Pos = pos;
 	Info.Dir = direction;
 	Info.CameraDir = cameradir;
-	return BasicInfoHistory.GetInfo(Info, fTime, std::ref(GetItemDesc), Sex, IsDie());
+	return BasicInfoHistory.GetInfo(Info, fTime, std::ref(GetItemDesc), Sex, IsDead());
 }
 
 void ZCharacter::GetPositions(v3* Head, v3* Foot, double Time)
@@ -1410,7 +1499,7 @@ void ZCharacter::GetPositions(v3* Head, v3* Foot, double Time)
 		BasicInfoHistoryManager::Info Info;
 		Info.Head = Head;
 		Info.Pos = Foot;
-		BasicInfoHistory.GetInfo(Info, Time, GetItemDesc, m_Property.nSex, IsDie());
+		BasicInfoHistory.GetInfo(Info, Time, GetItemDesc, m_Property.nSex, IsDead());
 		return;
 	}
 
@@ -1504,7 +1593,7 @@ void ZCharacter::UpdateSound()
 		if(m_nWhichFootSound!=nCurrFoot && pMaterial) {	
 			if(m_nWhichFootSound==0)
 			{	
-				// ÏôºÎ∞ú
+				// øﬁπﬂ
 				rvector pos = m_pVMesh->GetLFootPosition();
 				char *szSndName=g_pGame->GetSndNameFromBsp("man_fs_l", pMaterial);
 
@@ -1570,7 +1659,7 @@ void ZCharacter::UpdateSound()
 		}
 	}
 
-	if ( m_bDamaged && (!IsDie()) && (GetHP() < 30.f))
+	if ( m_bDamaged && (!IsDead()) && (GetHP() < 30.f))
 	{
 		if(GetProperty()->nSex==MMS_MALE)
 		{
@@ -1787,7 +1876,7 @@ void ZCharacter::OutputDebugString_CharacterState()
 
 	ZItem* pItem = m_Items.GetSelectedWeapon();
 
-	// ÏÑ†ÌÉùÎêú Î¨¥Í∏∞
+	// º±≈√µ» π´±‚
 #define IF_SITEM_ENUM(a)		if(a==m_Items.GetSelectedWeaponType())		{ AddTextEnum(m_Items.GetSelectedWeaponType(),a); }
 #define ELSE_IF_SITEM_ENUM(a)	else if(a==m_Items.GetSelectedWeaponType())	{ AddTextEnum(m_Items.GetSelectedWeaponType(),a); }
 
@@ -2038,13 +2127,13 @@ void ZCharacter::InitMesh()
 	pMesh = ZGetMeshMgr()->Get(szMeshName);
 
 	if(!pMesh) {
-		mlog("AddCharacter ÏõêÌïòÎäî Î™®Îç∏ÏùÑ Ï∞æÏùÑÏàò ÏóÜÏùå\n");
+		mlog("AddCharacter ø¯«œ¥¬ ∏µ®¿ª √£¿ªºˆ æ¯¿Ω\n");
 	}
 
 	int nVMID = g_pGame->m_VisualMeshMgr.Add(pMesh);
 
 	if(nVMID==-1) {
-		mlog("AddCharacter Ï∫êÎ¶≠ÌÑ∞ ÏÉùÏÑ± Ïã§Ìå®\n");
+		mlog("AddCharacter ƒ≥∏Ø≈Õ ª˝º∫ Ω«∆–\n");
 	}
 
 	m_nVMID = nVMID;
@@ -2313,8 +2402,8 @@ void ZCharacter::ChangeWeapon(MMatchCharItemParts nParts)
 
 	if (pSelectedItemDesc==NULL) {
 		m_Items.SelectWeapon(BackupParts);
-		mlog("ÏÑ†ÌÉùÎêú Î¨¥Í∏∞Ïùò Îç∞Ïù¥ÌÑ∞Í∞Ä ÏóÜÎã§.\n");
-		mlog("ZCharacter Î¨¥Í∏∞ÏÉÅÌÉúÏôÄ RVisualMesh Ïùò Î¨¥Í∏∞ÏÉÅÌÉúÍ∞Ä ÌãÄÎ†§Ï°åÎã§\n");
+		mlog("º±≈√µ» π´±‚¿« µ•¿Ã≈Õ∞° æ¯¥Ÿ.\n");
+		mlog("ZCharacter π´±‚ªÛ≈¬øÕ RVisualMesh ¿« π´±‚ªÛ≈¬∞° ∆≤∑¡¡≥¥Ÿ\n");
 		return;
 	}
 
@@ -2339,17 +2428,17 @@ bool ZCharacter::CheckValidShotTime(int nItemID, float fTime, ZItem* pItem)
 
 	if (GetLastShotItemID() == nItemID) {
 
-	// if time passed is less than item delay or minimum delay
-		if (fTime - GetLastShotTime() < (float)pItem->GetDesc()->m_nDelay/1000.0f || fTime - GetLastShotTime() < 10/1000.0f) {
+	// if time passed is less than item delay
+		if (fTime - GetLastShotTime() < (float)pItem->GetDesc()->m_nDelay/1000.0f) {
 			MMatchWeaponType nWeaponType = pItem->GetDesc()->m_nWeaponType;
 			if ( (MWT_DAGGER <= nWeaponType && nWeaponType <= MWT_DOUBLE_KATANA) &&
 				(fTime - GetLastShotTime() >= 0.23f) ) 
 			{
-				// continue Valid... (ÏπºÏßà Ï†ïÌôïÌïú ÏãúÍ∞ÑÏ∏°Ï†ïÏù¥ Ïñ¥Î†§Ïõå Îß§ÏßÅÎÑòÎ≤ÑÏÇ¨Ïö©.
+				// continue Valid... (ƒÆ¡˙ ¡§»Æ«— Ω√∞£√¯¡§¿Ã æÓ∑¡øˆ ∏≈¡˜≥—πˆªÁøÎ.
 			} else if ( (nWeaponType==MWT_DOUBLE_KATANA || nWeaponType==MWT_DUAL_DAGGER) &&
 				(fTime - GetLastShotTime() >= 0.11f) ) 
 			{
-				// continue Valid... (ÏπºÏßà Ï†ïÌôïÌïú ÏãúÍ∞ÑÏ∏°Ï†ïÏù¥ Ïñ¥Î†§Ïõå Îß§ÏßÅÎÑòÎ≤ÑÏÇ¨Ïö©.
+				// continue Valid... (ƒÆ¡˙ ¡§»Æ«— Ω√∞£√¯¡§¿Ã æÓ∑¡øˆ ∏≈¡˜≥—πˆªÁøÎ.
 			} else {
 #ifdef _CHECKVALIDSHOTLOG
 				sprintf_safe(szLog, "IGNORE>> [%s] (%u:%u) Interval(%0.2f) Delay(%0.2f) \n", 
@@ -2701,7 +2790,7 @@ bool ZCharacter::IsCollideable()
 {
 	if (m_Collision.bCollideable)
 	{
-		return ((!IsDie() && !m_bBlastDrop));
+		return ((!IsDead() && !m_bBlastDrop));
 	}
 
 	return m_Collision.bCollideable;
@@ -2709,7 +2798,7 @@ bool ZCharacter::IsCollideable()
 
 bool ZCharacter::IsAttackable()
 {
-	if (IsDie()) return false;
+	if (IsDead()) return false;
 	return true;
 }
 
@@ -2765,7 +2854,7 @@ ZOBJECTHITTEST ZCharacter::HitTest(const rvector& origin, const rvector& to,floa
 void ZCharacter::OnDamaged(ZObject* pAttacker, rvector srcPos, ZDAMAGETYPE damageType, MMatchWeaponType weaponType, float fDamage, float fPiercingRatio, int nMeleeType)
 {
 	if (m_bInitialized==false) return;
-	if (!IsVisible() || IsDie()) return;
+	if (!IsVisible() || IsDead()) return;
 
 	// If this isn't called on MyCharacter, it's unreliable predicted damage.
 	// Actual damage for other players is reported in HP/AP info packets.

@@ -115,10 +115,10 @@ void ZBrain::Think(float fDelta)
 {
 	m_Behavior.Run(fDelta);
 
-	// ±æÃ£±â
+	// ï¿½ï¿½Ã£ï¿½ï¿½
 	ProcessBuildPath(fDelta);
 
-	// °ø°Ý
+	// ï¿½ï¿½ï¿½ï¿½
 	ProcessAttack(fDelta);
 
 
@@ -150,7 +150,7 @@ void ZBrain::ProcessAttack(float fDelta)
 		DefaultAttack(nNpcAttackType);
 	}
 
-	// ½ºÅ³ÀÌ »ç¿ë°¡´ÉÇÏ¸é ½ºÅ³À» ¾´´Ù
+	// ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(nNpcAttackType==NPC_ATTACK_NONE) {
 		int nSkill;
 		MUID uidTarget;
@@ -203,7 +203,7 @@ void ZBrain::DefaultAttack(MQUEST_NPC_ATTACK nNpcAttackType)
 			if (pTarget)
 			{
 				ZRangeWeaponHitDice dice;
-				dice.BuildSourcePosition(m_pBody->GetPosition());		// ÃÑ±¸ À§Ä¡¸¦ Á¤È®È÷ ¾Ë¾Æ¾ß ÇÏ´Âµð
+				dice.BuildSourcePosition(m_pBody->GetPosition());		// ï¿½Ñ±ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ë¾Æ¾ï¿½ ï¿½Ï´Âµï¿½
 				dice.BuildTargetPosition(pTarget->GetPosition());
 				dice.BuildTargetBounds(pTarget->GetCollRadius(), pTarget->GetCollHeight());
 				float fTargetSpeed = Magnitude(pTarget->GetVelocity());
@@ -235,7 +235,7 @@ void ZBrain::ProcessBuildPath(float fDelta)
 	ZObject* pTarget = GetTarget();
 	if (pTarget)
 	{
-		// ¿ø°Å¸® ¸¿ÀÏ °æ¿ì °ø°Ý°¡´ÉÇÏ¸é ´Ù°¡°¡Áö ¾Ê°í ¹Ù¶ó¸¸ º»´Ù.
+		// ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ù°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù¶ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		if (m_pBody->GetNPCInfo()->nNPCAttackTypes & NPC_ATTACK_RANGE)
 		{
 			if (CheckAttackable() == NPC_ATTACK_RANGE)
@@ -253,7 +253,7 @@ void ZBrain::ProcessBuildPath(float fDelta)
 	}
 	else
 	{
-		// ¾øÀ¸¸é Áö±ÝÀº ±×³É °¡¸¸È÷ ÀÖÀÚ.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		m_pBody->m_TaskManager.Clear();
 		m_pBody->Stop();
 	}
@@ -412,7 +412,7 @@ void ZBrain::PushPathTask()
 ZObject* ZBrain::GetTarget()
 {
 #ifdef _DEBUG
-	// È¥ÀÚ¼­ AI Å×½ºÆ®ÇÒ °æ¿ì
+	// È¥ï¿½Ú¼ï¿½ AI ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½
 	if ((ZApplication::GetInstance()->GetLaunchMode() == ZApplication::ZLAUNCH_MODE_STANDALONE_QUEST) || 
 		(ZApplication::GetInstance()->GetLaunchMode() == ZApplication::ZLAUNCH_MODE_STANDALONE_AI))
 	{
@@ -434,9 +434,9 @@ ZObject* ZBrain::GetTarget()
 MQUEST_NPC_ATTACK ZBrain::CheckAttackable()
 {
 	ZObject* pTarget = GetTarget();
-	if ((pTarget == NULL) || (pTarget->IsDie())) return NPC_ATTACK_NONE;
+	if ((pTarget == NULL) || (pTarget->IsDead())) return NPC_ATTACK_NONE;
 
-	// ÀÏ´Ü ±ÙÁ¢ °ø°ÝÀÌ °¡´ÉÇÏ¸é ±ÙÁ¢ °ø°Ý
+	// ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (m_pBody->GetNPCInfo()->nNPCAttackTypes & NPC_ATTACK_MELEE)
 	{
 		if (m_pBody->CanAttackMelee(pTarget)) return NPC_ATTACK_MELEE;
@@ -461,12 +461,12 @@ bool ZBrain::CheckSkillUsable(int *pnSkill, MUID *puidTarget, rvector *pTargetPo
 			
 			ZSkill *pSkill = pmod->GetSkill(i);
 
-			if(!pSkill->IsReady()) continue; // ÄðÅ¸ÀÓÃ¼Å©
+			if(!pSkill->IsReady()) continue; // ï¿½ï¿½Å¸ï¿½ï¿½Ã¼Å©
 
 			ZSkillDesc *pDesc = pmod->GetSkill(i)->GetDesc();
-			if(pDesc->IsAlliedTarget()) {	// ´ë»óÀÌ ¾Æ±ºÀÎ°æ¿ì
+			if(pDesc->IsAlliedTarget()) {	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ±ï¿½ï¿½Î°ï¿½ï¿½
 
-				// È¿°ú°¡ ÀÖ´Â ´ë»óÁß °¡±îÀÌ ÀÖ´Â °É Ã£´Â´Ù.
+				// È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 				float fDist = FLT_MAX;
 				ZObject *pAlliedTarget = NULL;
 
@@ -474,9 +474,9 @@ bool ZBrain::CheckSkillUsable(int *pnSkill, MUID *puidTarget, rvector *pTargetPo
 					itor != ZGetObjectManager()->end(); ++itor)
 				{
 					ZObject *pObject = itor->second;
-					if(pObject->IsDie()) continue;
-					if(ZGetGame()->IsAttackable(m_pBody,pObject)) continue;	// ÀûÀÌ¸é ³Ñ¾î°£´Ù
-					if (pObject == m_pBody) continue;	// ÀÚ±âÀÚ½ÅÀÌ¸é ³Ñ¾î°£´Ù.
+					if(pObject->IsDead()) continue;
+					if(ZGetGame()->IsAttackable(m_pBody,pObject)) continue;	// ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½
+					if (pObject == m_pBody) continue;	// ï¿½Ú±ï¿½ï¿½Ú½ï¿½ï¿½Ì¸ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½.
 
 					float dist = MagnitudeSq(pObject->GetPosition() - m_pBody->GetPosition());
 					if (pSkill->IsUsable(pObject) && dist < fDist )
@@ -486,7 +486,7 @@ bool ZBrain::CheckSkillUsable(int *pnSkill, MUID *puidTarget, rvector *pTargetPo
 					}
 				}	
 
-				// ¸¸¾à ´ë»óÀÌ ¾øÀ¸¸é ÀÚ±â ÀÚ½ÅÇÑÅ×¶óµµ ½ºÅ³À» °Ç´Ù.
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½×¶ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ç´ï¿½.
 				if ((pAlliedTarget == NULL) && (pSkill->IsUsable(m_pBody)))
 				{
 					pAlliedTarget = m_pBody;
@@ -499,7 +499,7 @@ bool ZBrain::CheckSkillUsable(int *pnSkill, MUID *puidTarget, rvector *pTargetPo
 					if(pTargetPosition) *pTargetPosition = pAlliedTarget->GetCenterPos();
 					return true;
 				}
-			}else {							// Àû±ºÀÌ ´ë»óÀÌ´Ù
+			}else {							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 
 				ZObject* pTarget = GetTarget();
 				if (pTarget == NULL) continue;
@@ -545,7 +545,7 @@ bool ZBrain::FindTarget()
 		itor != ZGetCharacterManager()->end(); ++itor)
 	{
 		ZCharacter* pCharacter = (*itor).second;
-		if (pCharacter->IsDie()) continue;
+		if (pCharacter->IsDead()) continue;
 		
 		if (pCharacter->LostConnection())
 			continue;

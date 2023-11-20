@@ -306,7 +306,7 @@ bool ZEffectPartsTypePos::Draw(u64 nTime)
 	if(pObj) {
 		if(pObj->m_pVMesh) {
 
-			if(pObj->IsDie())
+			if(pObj->IsDead())
 				return false;
 
 			m_Pos = pObj->m_pVMesh->GetBipTypePosition(m_type);

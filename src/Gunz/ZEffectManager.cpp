@@ -752,7 +752,7 @@ void ZEffectManager::Draw(u32 nTime,int mode,float height)
 
 			if(pEffect==NULL) {
 				int _size = (int)m_Effects[d].size();
-				mlog("¶ß¾Æ.. EffectManager NULL ¹®Á¦ ¹ß»ı ( %d list ¿ä¼Ò) : size : %d \n",d,_size);
+				mlog("ï¿½ß¾ï¿½.. EffectManager NULL ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ( %d list ï¿½ï¿½ï¿½) : size : %d \n",d,_size);
 				++node;
 			} else {
 				if(!pEffect->m_bWaterSkip) {
@@ -907,7 +907,7 @@ void ZEffectManager::Draw(u32 nTime)
 			if(pEffect==NULL) {
 
 				int _size = (int)m_Effects[d].size();
-				mlog("¶ß¾Æ.. EffectManager NULL ¹®Á¦ ¹ß»ı ( %d list ¿ä¼Ò) : size : %d \n",d,_size);
+				mlog("ï¿½ß¾ï¿½.. EffectManager NULL ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ( %d list ï¿½ï¿½ï¿½) : size : %d \n",d,_size);
 				++node;
 
 			} else {
@@ -2602,7 +2602,7 @@ void ZEffectManager::AddLostConIcon(ZObject* pObj)
 				ZCharacter* pChar = MDynamicCast(ZCharacter, pObj);
 
 				if( pChar ) {
-					if(pChar->IsDie()) return false;
+					if(pChar->IsDead()) return false;
 					if(!pChar->m_bLostConEffect) return false;
 					if(!pChar->m_bRendered)
 						return true;

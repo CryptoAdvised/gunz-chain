@@ -19,7 +19,7 @@ ZCombatQuestScreen::~ZCombatQuestScreen()
 
 }
 
-// NPC Å³¼ö¸¦ ±âÁØÀ¸·Î ¼ÒÆÃ
+// NPC Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 bool CompareQuestScreenCharacter(ZCharacter* a, ZCharacter* b) 
 {
 	ZModule_QuestStatus* pAMod = (ZModule_QuestStatus*)a->GetModule(ZMID_QUESTSTATUS);
@@ -61,7 +61,7 @@ void ZCombatQuestScreen::OnDraw(MDrawContext* pDC)
 
 	if ( ZGetQuest()->IsRoundClear())
 	{
-		// ¿î¿µÀÚ hide´Â Á¦¿Ü
+		// ï¿½î¿µï¿½ï¿½ hideï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		bool bEventHide = false;
 		if (ZGetMyInfo()->IsAdminGrade()) 
 		{
@@ -95,7 +95,7 @@ void ZCombatQuestScreen::DrawPlayer(MDrawContext* pDC, int index, ZCharacter* pC
 	MFont *pFont = MFontManager::Get("FONTa10b");
 	pDC->SetFont( pFont );
 	MCOLOR color = MCOLOR(0xFFFFFFFF);
-	if (pCharacter->IsDie()) color = MCOLOR(0xFF999999);
+	if (pCharacter->IsDead()) color = MCOLOR(0xFF999999);
 	else if (pCharacter == ZApplication::GetGame()->m_pMyCharacter) color = MCOLOR(0xFFEEEE00);
 	pDC->SetColor(color);
 

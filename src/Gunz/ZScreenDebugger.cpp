@@ -104,7 +104,7 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 		int zcr_cnt = ZGetObjectManager()->GetRenderedCount();
 		int zco_cnt = ZGetObjectManager()->GetDrawCount();
 
-		sprintf_safe(buffer, "FPS : %3.3f , ms %4.1f,score %4.1f Á¡    Send:%d CPS, Recv:%d CPS    CmdQueue: %d RenderCharCnt = %d/%d", g_fFPS, fMs, fScore, nSendTraffic, nRecvTraffic,
+		sprintf_safe(buffer, "FPS : %3.3f , ms %4.1f,score %4.1f ï¿½ï¿½    Send:%d CPS, Recv:%d CPS    CmdQueue: %d RenderCharCnt = %d/%d", g_fFPS, fMs, fScore, nSendTraffic, nRecvTraffic,
 			ZGetGameClient()->GetCommandManager()->GetCommandQueueCount(),zcr_cnt,zco_cnt );
 		OUTTEXT();
 		NEXTLINE();
@@ -150,11 +150,11 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 	NEXTLINE();
 
 
-	// Å×½ºÆ® ÄÚµå.. µð¹ö±× Á¤º¸..
+	// ï¿½×½ï¿½Æ® ï¿½Úµï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	ZCharacter* pCharacter = g_pGame->m_pMyCharacter;
 	ZCombatInterface* pCombatInterface = ZApplication::GetInstance()->GetGameInterface()->GetCombatInterface();
 
-	// ¿ÉÁ®¹öÀÏ°æ¿ì
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½
 	if (pCombatInterface->GetObserver()->IsVisible()) 
 	{
 		pCharacter = pCombatInterface->GetObserver()->GetTargetCharacter();
@@ -164,7 +164,7 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 	float fMs = 1000.f/g_fFPS;
 	float fScore = 100-(fMs-(1000.f/60.f))*2;
 
-	sprintf_safe(buffer, "FPS : %3.3f , %d polygon , %d calls , %4.1f ms,score %4.1f Á¡, CmdQueue: %d",g_fFPS,g_nPoly,g_nCall,fMs,fScore,
+	sprintf_safe(buffer, "FPS : %3.3f , %d polygon , %d calls , %4.1f ms,score %4.1f ï¿½ï¿½, CmdQueue: %d",g_fFPS,g_nPoly,g_nCall,fMs,fScore,
 		ZGetGameClient()->GetCommandManager()->GetCommandQueueCount());
 	OUTTEXT();
 	NEXTLINE();
@@ -237,7 +237,7 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 					delay_time = org_time * (1.f/( pAniInfo[i]->m_fSpeed / 4.8f ));
 				}
 
-				sprintf_safe(buffer,"speed %d = %d ÆÛ¼¾Æ® ( %d/%d ) ms (delay = %d) ",i, speed, org_time , delay_time,delay_time-org_time);
+				sprintf_safe(buffer,"speed %d = %d ï¿½Û¼ï¿½Æ® ( %d/%d ) ms (delay = %d) ",i, speed, org_time , delay_time,delay_time-org_time);
 				pDC->SetColor(MCOLOR(0xFFffffff));
 				OUTTEXT();
 				NEXTLINE();
@@ -297,7 +297,7 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 		else strcpy_safe(szVisible, "nonVisible");
 
 		char szAlive[256];
-		if (pCharacter->IsDie()) strcpy_safe(szAlive, "Dead"); else strcpy_safe(szAlive, "Alive");
+		if (pCharacter->IsDead()) strcpy_safe(szAlive, "Dead"); else strcpy_safe(szAlive, "Alive");
 
 		sprintf_safe(buffer,"%s(%s) : %s pos ( %3.1f %3.1f %3.1f ) dir ( %3.1f %3.1f %3.1f )    speed %3.1f ( %3.1f %3.1f %3.1f )"
 			,pCharacter->GetProperty()->szName
@@ -326,7 +326,7 @@ void ZScreenDebugger::DrawDebugInfo(MDrawContext *pDC)
 		else strcpy_safe(szVisible, "nonVisible");
 
 		char szAlive[256];
-		if (pCharacter->IsDie()) strcpy_safe(szAlive, "Dead"); else strcpy_safe(szAlive, "Alive");
+		if (pCharacter->IsDead()) strcpy_safe(szAlive, "Dead"); else strcpy_safe(szAlive, "Alive");
 
 		sprintf_safe(buffer,"%s(%s) : %s pos ( %3.1f %3.1f %3.1f ) dir ( %3.1f %3.1f %3.1f )    speed %3.1f ( %3.1f %3.1f %3.1f )"
 			,"npc"
@@ -614,21 +614,21 @@ void ZScreenDebugger::DrawActorInfo(int num, MDrawContext *pDC, ZActor* pActor)
 		nTaskCount, szTaskName);
 	PrintText(pDC, buf);
 
-	char szFlagLand[8] = "¡Û";
-	char szFlagBlast[8] = "¡Û";
-	char szFlagBlastDagger[8] = "¡Û";
-	char szFlagMoving[8] = "¡Û";
-	char szFlagDead[8] = "¡Û";
-	char szFlagRequestedDead[8] = "¡Û";
-	char szFlagMyControl[8] = "¡Û";
+	char szFlagLand[8] = "ï¿½ï¿½";
+	char szFlagBlast[8] = "ï¿½ï¿½";
+	char szFlagBlastDagger[8] = "ï¿½ï¿½";
+	char szFlagMoving[8] = "ï¿½ï¿½";
+	char szFlagDead[8] = "ï¿½ï¿½";
+	char szFlagRequestedDead[8] = "ï¿½ï¿½";
+	char szFlagMyControl[8] = "ï¿½ï¿½";
 
-	if (pActor->CheckFlag(AF_LAND)) strcpy_safe(szFlagLand, "¡Ü");
-	if (pActor->CheckFlag(AF_BLAST)) strcpy_safe(szFlagBlast, "¡Ü");
-	if (pActor->CheckFlag(AF_BLAST_DAGGER)) strcpy_safe(szFlagBlastDagger, "¡Ü");
-	if (pActor->CheckFlag(AF_MOVING)) strcpy_safe(szFlagMoving, "¡Ü");
-	if (pActor->CheckFlag(AF_DEAD)) strcpy_safe(szFlagDead, "¡Ü");
-	if (pActor->CheckFlag(AF_REQUESTED_DEAD)) strcpy_safe(szFlagRequestedDead, "¡Ü");
-	if (pActor->CheckFlag(AF_MY_CONTROL)) strcpy_safe(szFlagMyControl, "¡Ü");
+	if (pActor->CheckFlag(AF_LAND)) strcpy_safe(szFlagLand, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_BLAST)) strcpy_safe(szFlagBlast, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_BLAST_DAGGER)) strcpy_safe(szFlagBlastDagger, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_MOVING)) strcpy_safe(szFlagMoving, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_DEAD)) strcpy_safe(szFlagDead, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_REQUESTED_DEAD)) strcpy_safe(szFlagRequestedDead, "ï¿½ï¿½");
+	if (pActor->CheckFlag(AF_MY_CONTROL)) strcpy_safe(szFlagMyControl, "ï¿½ï¿½");
 
 	sprintf_safe(buf, "     FLAG: LAND(%s), BLAST(%s), BLASTDAGGER(%s), MOVING(%s), DEAD(%s), REQUESTED_DEAD(%s), MY_CONTROL(%s)",
 		szFlagLand, szFlagBlast, szFlagBlastDagger ,szFlagMoving, szFlagDead, szFlagRequestedDead, szFlagMyControl);
