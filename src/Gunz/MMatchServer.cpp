@@ -58,13 +58,13 @@
 
 #define MATCHSERVER_DEFAULT_UDP_PORT	7777
 
-#define FILENAME_ITEM_DESC				"zitem.xml"
-#define FILENAME_SHOP					"shop.xml"
-#define FILENAME_CHANNEL				"channel.xml"
-#define FILENAME_SHUTDOWN_NOTIFY		"shutdown.xml"
-#define FILENAME_WORLDITEM_DESC			"worlditem.xml"
-#define FILENAME_MONSTERGROUP_DESC		"monstergroup.xml"
-#define FILENAME_CHANNELRULE			"channelrule.xml"
+#define FILENAME_ITEM_DESC				"system/zitem.xml"
+#define FILENAME_SHOP					"system/shop.xml"
+#define FILENAME_CHANNEL				"system/channel.xml"
+#define FILENAME_SHUTDOWN_NOTIFY		"system/shutdown.xml"
+#define FILENAME_WORLDITEM_DESC			"system/worlditem.xml"
+#define FILENAME_MONSTERGROUP_DESC		"system/monstergroup.xml"
+#define FILENAME_CHANNELRULE			"system/channelrule.xml"
 
 MMatchServer* MMatchServer::m_pInstance = NULL;
 
@@ -374,7 +374,7 @@ bool MMatchServer::LoadInitFile()
 		return false;
 	}
 
-	if (!MGetGunGame()->ReadXML("gungame.xml"))
+	if (!MGetGunGame()->ReadXML("system/gungame.xml"))
 	{
 		Log(LOG_ALL, "Load GunGame.xml Failed.\n");
 		return false;
@@ -2715,7 +2715,7 @@ bool MMatchServer::CheckUpdateItemXML()
 
 	xmlIniData.Create();
 
-	if (!xmlIniData.LoadFromFile("strings.xml"))
+	if (!xmlIniData.LoadFromFile("system/strings.xml"))
 	{
 		xmlIniData.Destroy();
 		return false;

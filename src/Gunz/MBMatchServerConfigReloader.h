@@ -3,9 +3,9 @@
 
 
 /*
- ReloadList.xml¿¡ µé¾î°¡´Â ÆÄÀÏ ÀÌ¸§Àº ÀÐ¾îµéÀÎÈÄ ¸ðµÎ ¼Ò¹®ÀÚ·Î º¯È­ÇØ¼­ Ã³¸®ÇÔ. - by SungE
+ ReloadList.xmlï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½È­ï¿½Ø¼ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½. - by SungE
 
- ÇöÁ¦ ¸®·Îµå °¡´ÉÇÑ ¸ñ·Ï. 
+ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½. 
 	server.ini
 	zitem.xml
 	hashmap.txt
@@ -14,7 +14,7 @@
  */
 
 
-#define RELOAD_LIST "ReloadList.xml"
+#define RELOAD_LIST "system/ReloadList.xml"
 
 
 #include <vector>

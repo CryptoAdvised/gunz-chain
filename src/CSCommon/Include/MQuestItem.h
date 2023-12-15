@@ -11,7 +11,7 @@
 #include "MMatchGlobal.h"
 #include "MTime.h"
 
-#define QUEST_ITEM_FILE_NAME	"zquestitem.xml"
+#define QUEST_ITEM_FILE_NAME	"system/zquestitem.xml"
 
 #define MQICTOK_ITEM		"ITEM"
 #define MQICTOK_ID			"id"

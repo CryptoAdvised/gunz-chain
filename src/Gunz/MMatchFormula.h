@@ -4,7 +4,7 @@
 #include <vector>
 #include "MMatchItem.h"
 
-#define FILENAME_MATCH_FORMULA		"formula.xml"
+#define FILENAME_MATCH_FORMULA		"system/formula.xml"
 #define MAX_LEVEL					99
 
 class MMatchEquipedItem;
