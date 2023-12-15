@@ -13,7 +13,7 @@ ZStringResManager::~ZStringResManager() = default;
 
 bool ZStringResManager::OnInit()
 {
-	auto strFileName = m_strPath + FILENAME_MESSAGES;
+	std::string strFileName = /*m_strPath +*/ FILENAME_MESSAGES;
 
 	if (!m_Messages.Initialize(strFileName.c_str(), 0, m_pFS))
 	{

@@ -2,9 +2,9 @@
 
 #include "MStringRes.h"
 
-const char FILENAME_ERROR_TABLE[]		= "cserror.xml";
-const char FILENAME_STRING_TABLE[]		= "strings.xml";
-const char FILENAME_MESSAGES[]			= "messages.xml";
+const char FILENAME_ERROR_TABLE[]		= "system/cserror.xml";
+const char FILENAME_STRING_TABLE[]		= "system/strings.xml";
+const char FILENAME_MESSAGES[]			= "system/messages.xml";
 
 
 
