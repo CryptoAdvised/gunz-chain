@@ -140,7 +140,7 @@ void MMatchWorldItemDescMgr::ParseWorldItem(MXmlElement& element)
 	element.GetChildContents(&pNewWorldItemDesc->m_fAmount, MWICTOK_AMOUNT);
 
 /*
-	// ÇöÀç¹öÀü¿¡¼± bullet°¡ ¾Æ´Ï¸é Ãß°¡ÇÏÁö ¾Ê´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bulletï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if (pNewWorldItemDesc->m_nItemType != WIT_BULLET)
 	{
 		delete pNewWorldItemDesc;

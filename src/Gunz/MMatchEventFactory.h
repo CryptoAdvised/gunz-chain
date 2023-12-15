@@ -15,7 +15,7 @@ using std::map;
 using std::string;
 
 
-#define EVENT_LIST_XML_FILE_NAME "EventList.xml"
+#define EVENT_LIST_XML_FILE_NAME "system/EventList.xml"
 
 
 struct EventServerType
@@ -125,10 +125,10 @@ private :
 	void ParseEventPartTime( MXmlElement& chrElement, vector<EventPartTime>& EventPartTimeVec );
 	
 private :
-	MMatchEventFactory m_OnBeginEventFactory;	// ¹æÀ» ¸¸µé¾î °ÔÀÓÀ» ½ÃÀÛÇÏ´Â ½ÃÁ¡ÀÇ ÀÌº¥Æ®.
-	MMatchEventFactory m_OnGameEventFactory;	// ¹æÀ» ¸¸µé¾î °ÔÀÓÀ» ½ÃÀÛÇÑ ÈÄÀÇ °ÔÀÓÁøÇàÁß ÀÌº¥Æ®.
-	MMatchEventFactory m_OnEndEventFactory;		// °ÔÀÓÀÌ ³¡³ª´Â ½ÃÁ¡ÀÇ ÀÌº¥Æ®.
-	MMatchEventFactory m_CustomEventFactory;	// Á÷Á¢ È£ÃâÇÏ´Â ÀÌº¥Æ®.
+	MMatchEventFactory m_OnBeginEventFactory;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®.
+	MMatchEventFactory m_OnGameEventFactory;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®.
+	MMatchEventFactory m_OnEndEventFactory;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®.
+	MMatchEventFactory m_CustomEventFactory;	// ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ìºï¿½Æ®.
 
 	bool m_bIsUsable;
 

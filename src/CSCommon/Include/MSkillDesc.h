@@ -9,18 +9,18 @@
 #include <map>
 using namespace std;
 
-#define FILENAME_SKILL_DESC		"skill.xml"
+#define FILENAME_SKILL_DESC		"system/skill.xml"
 
 
-/// ½ºÅ³
-/// enumÀ» Á¦¿ÜÇÏ°í´Â ±âÈ¹¼­¿¡ ÀÖ´Â ±×´ë·Î Å¸ÀÔÀ» Àû¿ë. ½ÇÁ¦ ±â¼ú ÀÔ·Â¿¡ µû¶ó ¼öÁ¤ ÇÊ¿ä.
+/// ï¿½ï¿½Å³
+/// enumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½È¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×´ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½.
 class MSkillDesc{
 public:
-	// ½Äº°
+	// ï¿½Äºï¿½
 	int				nID;
 	char			Name[32];
 
-	// ºÐ·ù
+	// ï¿½Ð·ï¿½
 	MSkillType			SkillType;
 	MSkillFomulaType	SkillFomulaType;
 	MPrimaSkill			PrimaSkill;
@@ -31,25 +31,25 @@ public:
 	unsigned int	OverwriteFlag1;
 	unsigned int	OverwriteFlag2;
 
-	// ºñ¿ë
+	// ï¿½ï¿½ï¿½
 	short int		nHP;
 	short int		nEN;
 
-	// ½Ã°£
+	// ï¿½Ã°ï¿½
 	short int		nActivationTime;
 	short int		nReactivationTime;
 	short int		nDuration;
 
-	// ´ë»ó
+	// ï¿½ï¿½ï¿½
 	MTargetType		TargetType;
 	MSpecies		Species;
 
-	// °Å¸®
+	// ï¿½Å¸ï¿½
 	unsigned char	nRangeMin;
 	unsigned char	nRangeMax;
 	unsigned char	nRadius;
 
-	// Á¶°Ç
+	// ï¿½ï¿½ï¿½ï¿½
 	MCharacterClass	Class;
 	unsigned char	nLevel;
 	MWeaponType		WeaponType;
@@ -57,16 +57,16 @@ public:
 	unsigned short	PrerequisiteType;
 	int				nPrerequisiteID;
 
-	// Àû´ë°¨
+	// ï¿½ï¿½ï¿½ë°¨
 	int				nHateValue;
 
 	unsigned int	MODFlags;
 
-	// °Ç°­ ¼öÁ¤Ä¡
+	// ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_HP;
 	unsigned short	MOD_EN;
 
-	// Æ¯¼ºÄ¡ ¼öÁ¤
+	// Æ¯ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 	unsigned short	MOD_STR;
 	unsigned short	MOD_CON;
 	unsigned short	MOD_DEX;
@@ -74,7 +74,7 @@ public:
 	unsigned short	MOD_INT;
 	unsigned short	MOD_CHA;
 
-	// ÀúÇ×·Â ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_MR;
 	unsigned short	MOD_FR;
 	unsigned short	MOD_CR;
@@ -83,7 +83,7 @@ public:
 	unsigned char	nResist;
 	unsigned char	nResistAdjust;
 
-	// ¹æ¾î·Â ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_AC;
 	unsigned short	MOD_ABS;
 	unsigned short	MOD_MFlee;
@@ -92,7 +92,7 @@ public:
 	unsigned short	MOD_HPRegen;
 	unsigned short	MOD_ENRegen;
 
-	// °ø°Ý·Â ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_PriATK;
 	unsigned short	MOD_SecATK;
 	unsigned short	MOD_Aspd;
@@ -103,21 +103,21 @@ public:
 	unsigned short	MOD_RAccu;
 	float			MOD_DamageAmp;
 
-	// ÀÏ¹Ý ¼öÁ¤Ä¡
+	// ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_DSight;
 	unsigned short	MOD_NSight;
 	unsigned short	MOD_Spd;
 
-	// »óÅÂ ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_Mode;
 	unsigned short	MOD_State;
 	unsigned short	MOD_Ability;
 
-	// ¿­¼è ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_KeyFlag;
 	unsigned short	MOD_KeySkill;
 
-	// ÇÁ¸®¸¶ ½ºÅ³ ¼öÁ¤Ä¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½Ä¡
 	unsigned short	MOD_OCS;
 	unsigned short	MOD_DCS;
 	unsigned short	MOD_RCS;
@@ -128,7 +128,7 @@ public:
 	unsigned short	MOD_MCS;
 	unsigned short	MOD_SCS;
 
-	// ºñÁê¾ó
+	// ï¿½ï¿½ï¿½ï¿½ï¿½
 	unsigned short	nIcon;
 	unsigned short	nActivationAni;
 	unsigned short	nUseAni;
