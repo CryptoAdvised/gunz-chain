@@ -40,7 +40,7 @@ bool MBaseStringResManager::Init(const char* szPath, const int nLangID, MZFileSy
 	std::string strFileName;
 
 	// string table
-	strFileName = m_strPath + FILENAME_STRING_TABLE;
+	strFileName = /*m_strPath +*/ FILENAME_STRING_TABLE;
 	if (!m_StringTable.Initialize(strFileName.c_str(), nLangID, pfs))
 	{
 		_ASSERT(0);
@@ -49,7 +49,7 @@ bool MBaseStringResManager::Init(const char* szPath, const int nLangID, MZFileSy
 	}
 
 	// error table
-	strFileName = m_strPath + FILENAME_ERROR_TABLE;
+	strFileName = /*m_strPath +*/ FILENAME_ERROR_TABLE;
 	if (!m_ErrorTable.Initialize(strFileName.c_str(), nLangID, pfs))
 	{
 		_ASSERT(0);
