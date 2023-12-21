@@ -129,9 +129,9 @@ struct ZCONFIG_LOCALE
 
 struct ZCONFIG_CHAT
 {
-	std::string Font = "Arial";
+	std::string Font = "Segoe UI";
 	bool BoldFont = true;
-	int FontSize = 16;
+	int FontSize = 12;
 
 	// 50% transparent black
 	u32 BackgroundColor = 0x80000000;
@@ -158,9 +158,7 @@ public:
 	bool LoadConfig(const char* szFileName);
 	bool Save() { return Save(GetLocale()->szXmlHeader); }
 	bool Save( const char* szHeader)	{
-		std::string szConfigPath = GetMyDocumentsPath();
-		szConfigPath += GUNZ_FOLDER;
-		szConfigPath += FILENAME_CONFIG;
+		std::string szConfigPath = FILENAME_CONFIG;
 		MakePath(szConfigPath.c_str());
 		return SaveToFile(szConfigPath.c_str(), szHeader);
 	}
