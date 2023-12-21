@@ -2386,6 +2386,7 @@ void ZGame::OnPeerShot_Melee(const MUID& uidOwner, float fShotTime)
 	bool HitEnemy = false;
 
 	fShotTime = GetTime();
+	fShotTime-=pOwnerCharacter->m_fTimeOffset;
 
 	v3 OwnerPosition = pOwner->GetPosition();
 	v3 OwnerDir = pOwner->m_Direction;
@@ -3386,6 +3387,9 @@ void ZGame::OnReceiveTeamBonus(const MUID& uidChar, const u32 nExpArg)
 
 void ZGame::OnPeerDieMessage(ZCharacter* pVictim, ZCharacter* pAttacker)
 {
+	ZGetCombatInterface()->GetObserver()->SetTarget(pAttacker->GetUID());
+	ZGetCombatInterface()->SetObserverMode(true);
+	
 	char szMsg[256] = "";
 
 	const char *szAnonymous = "Anonymous";
@@ -3579,6 +3583,7 @@ void ZGame::OnSetObserver(const MUID& uid)
 
 void ZGame::OnPeerSpawn(const MUID& uid, const rvector& pos, const rvector& dir)
 {
+	ZGetCombatInterface()->SetObserverMode(false);
 	m_nSpawnTime = GetGlobalTimeMS();
 	SetSpawnRequested(false);
 

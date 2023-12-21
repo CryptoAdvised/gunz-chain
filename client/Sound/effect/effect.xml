@@ -266,6 +266,7 @@
 	<EFFECT NAME="nar/NAR27"					type="1"/>
 	<EFFECT NAME="nar/NAR28"					type="1"/>
 	<EFFECT NAME="nar/NAR29"					type="1"/>
+	<EFFECT NAME="nar/level_up"					type="1"/>
 
 	<!-- MALE: Sound additions -->
 	<EFFECT NAME="we_mal_01"	MINDISTANCE="320"/> <!-- Laugh -->
