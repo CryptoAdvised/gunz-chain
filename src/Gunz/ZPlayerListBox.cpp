@@ -60,8 +60,17 @@ void ZPlayerListBoxLook::OnItemDraw2(MDrawContext* pDC, MRECT& r, MBitmap* pBitm
 static float GetF(float _old, float _new) {
 	return _old/_new;
 }
-static float GetF(float _new) {
-	return _new/800.f;
+static float GetF(float _new)
+{
+  float adjustWidth = _new / 800.f;
+  if (RGetScreenWidth() != 0.75f)
+  {
+    if (RGetIsWidthScreen())
+      adjustWidth = _new / 960.f;
+    if (RGetIs16x9())
+      adjustWidth = _new / 1024.f;
+  }
+  return adjustWidth;
 }
 
 void ZPlayerListBoxLook::OnDraw(MListBox* pListBox, MDrawContext* pDC)

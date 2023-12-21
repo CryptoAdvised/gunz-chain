@@ -48,62 +48,60 @@ bool ZScreenEffect::IsDeleteTime()
 
 bool ZScreenEffect::DrawCustom(u64 nTime, const rvector& vOffset, float fAngle)
 {
-	RGetDevice()->SetRenderState(D3DRS_ZENABLE, FALSE);
-	RGetDevice()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    RGetDevice()->SetRenderState(D3DRS_ZENABLE, FALSE);
+    RGetDevice()->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-	rmatrix World;
-	GetIdentityMatrix(World);
+    rmatrix World;
+    GetIdentityMatrix(World);  
 
-	if (fAngle != 0.0f)
-	{
-		World = RGetRotZRad(fAngle);
-	}
+    if (fAngle != 0.0f)
+    {
+        World = RGetRotZRad(fAngle);
+    }
 
-	const rvector eye(0, 0, -650), at(0, 0, 0), up(0, 1, 0);
-	auto View = ViewMatrix(eye, Normalized(at - eye), up);
-	auto Offset = TranslationMatrix(vOffset);
-	rmatrix OriginalProjection;
-	float FOV = ScreenFOVInRadians;
+    const rvector eye(0, 0, -650), at(0, 0, 0), up(0, 1, 0);
+    rmatrix View = ViewMatrix(eye, Normalized(at - eye), up);
+    rmatrix Offset = TranslationMatrix(vOffset);
 
-	if (ZGetConfiguration()->GetInterfaceFix())
-	{
-		FOV = FixedFOV(FOV);
-	}
-	else
-	{
-		auto Ratio = 4.0f / 3 / (float(RGetScreenWidth()) / RGetScreenHeight());
-		auto Scale = ScalingMatrix({1, Ratio, 1, 1});
+	//Widescreen FOV fix
+    float FOV = ScreenFOVInRadians;
+    bool ChangeProj = ZGetConfiguration()->GetInterfaceFix() || FOV != GetFOV();
+    rmatrix OriginalProjection;
+    if (ChangeProj)
+    {
+        OriginalProjection = RGetTransform(D3DTS_PROJECTION);
+        rmatrix Proj = PerspectiveProjectionMatrixViewport(RGetScreenWidth(), RGetScreenHeight(), FOV, 5, 10000);
+        RSetTransform(D3DTS_PROJECTION, Proj);
+    }
 
-		View = Scale * View;
-	}
-	
-	bool ChangeProj = ZGetConfiguration()->GetInterfaceFix() || FOV != GetFOV();
-	if (ChangeProj)
-	{
-		OriginalProjection = RGetTransform(D3DTS_PROJECTION);
-		auto&& Proj = PerspectiveProjectionMatrixViewport(RGetScreenWidth(), RGetScreenHeight(),
-			FOV, 5, 10000);
-		RSetTransform(D3DTS_PROJECTION, Proj);
-	}
+    // Widescreen fix
+    rmatrix Scale;
+    GetIdentityMatrix(Scale);  
+    if (RGetScreenWidth() != 0.75f)  // Fix Screen resize
+    {
+        float scaleValue = (float)RGetScreenWidth() / ((float)RGetScreenHeight() * (4.0f / 3.0f));
+        Scale = ScalingMatrix({scaleValue, 1, 1, 1});
+    }
 
-	View = Offset * View;
+    View = Scale * View;
+    View = Offset * View;
+    RSetTransform(D3DTS_VIEW, View);
 
-	RSetTransform(D3DTS_VIEW, View);
+    m_VMesh.SetWorldMatrix(World);
+    m_VMesh.Render();
+    
+    if (ChangeProj)
+    {
+        RSetTransform(D3DTS_PROJECTION, OriginalProjection);
+    }
 
-	m_VMesh.SetWorldMatrix(World);
-	m_VMesh.Render();
-	
-	if (ChangeProj)
-	{
-		RSetTransform(D3DTS_PROJECTION, OriginalProjection);
-	}
+    if (m_VMesh.isOncePlayDone()) {
+        return false;
+    }
 
-	if(m_VMesh.isOncePlayDone()) {
-		return false;
-	}
-
-	return true;
+    return true;
 }
+
 
 ZComboEffect::ZComboEffect(RMesh *pMesh,rvector offset)
 :ZScreenEffect(pMesh,offset)
