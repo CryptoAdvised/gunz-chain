@@ -2386,7 +2386,6 @@ void ZGame::OnPeerShot_Melee(const MUID& uidOwner, float fShotTime)
 	bool HitEnemy = false;
 
 	fShotTime = GetTime();
-	fShotTime-=pOwnerCharacter->m_fTimeOffset;
 
 	v3 OwnerPosition = pOwner->GetPosition();
 	v3 OwnerDir = pOwner->m_Direction;
