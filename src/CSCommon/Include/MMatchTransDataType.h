@@ -95,17 +95,17 @@ struct MTD_ItemNode
 {
 	MUID				uidItem;
 	u32	nItemID;
-	int					nRentMinutePeriodRemainder;		// ±â°£Á¦ ¾ÆÀÌÅÛ »ç¿ë°¡´É½Ã°£(ÃÊ´ÜÀ§), RENT_MINUTE_PERIOD_UNLIMITEDÀÌ¸é ¹«Á¦ÇÑ
+	int					nRentMinutePeriodRemainder;		// ï¿½â°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ë°¡ï¿½É½Ã°ï¿½(ï¿½Ê´ï¿½ï¿½ï¿½), RENT_MINUTE_PERIOD_UNLIMITEDï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 struct MTD_AccountItemNode
 {
 	int					nAIID;
 	u32	nItemID;
-	int					nRentMinutePeriodRemainder;		// ±â°£Á¦ ¾ÆÀÌÅÛ »ç¿ë°¡´É½Ã°£(ÃÊ´ÜÀ§), RENT_MINUTE_PERIOD_UNLIMITEDÀÌ¸é ¹«Á¦ÇÑ
+	int					nRentMinutePeriodRemainder;		// ï¿½â°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ë°¡ï¿½É½Ã°ï¿½(ï¿½Ê´ï¿½ï¿½ï¿½), RENT_MINUTE_PERIOD_UNLIMITEDï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
-// °ÔÀÓ¾È »óÅÂ Á¤º¸
+// ï¿½ï¿½ï¿½Ó¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_GameInfoPlayerItem
 {
 	MUID	uidPlayer;
@@ -116,11 +116,11 @@ struct MTD_GameInfoPlayerItem
 
 struct MTD_GameInfo
 {
-	char	nRedTeamScore;		// ÆÀÀü¿¡¼­¸¸ »ç¿ëÇÏ´Â ·¹µåÆÀÁ¤º¸
-	char	nBlueTeamScore;		// ÆÀÀü¿¡¼­¸¸ »ç¿ëÇÏ´Â ºí·çÆÀÁ¤º¸
+	char	nRedTeamScore;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	char	nBlueTeamScore;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	short	nRedTeamKills;		// ¹«ÇÑÆÀµ¥½º¸ÅÄ¡¿¡¼­¸¸ »ç¿ëÇÏ´Â ·¹µåÆÀÅ³¼ö
-	short	nBlueTeamKills;		// ¹«ÇÑÆÀµ¥½º¸ÅÄ¡¿¡¼­¸¸ »ç¿ëÇÏ´Â ºí·çÆÀÅ³¼ö
+	short	nRedTeamKills;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½
+	short	nBlueTeamKills;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½
 };
 
 struct MTD_RuleInfo	
@@ -154,8 +154,8 @@ struct MTD_ChannelPlayerListNode
 	char			szClanName[CLAN_NAME_LENGTH];
 	char			nLevel;
 	MMatchPlace		nPlace;
-	unsigned char	nGrade;			// ·Îºñ¿¡¼­´Â uid ·Î Ä³¸¯ÅÍÀÇ µî±ÞÀ» ¾Ë¼ö°¡ ¾ø¾î¼­..
-	unsigned char	nPlayerFlags;	// ÇÃ·¹ÀÌ¾î ¼Ó¼º(¿î¿µÀÚ¼û±èµî) - MTD_PlayerFlags »ç¿ë
+	unsigned char	nGrade;			// ï¿½Îºñ¿¡¼ï¿½ï¿½ï¿½ uid ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­..
+	unsigned char	nPlayerFlags;	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ó¼ï¿½(ï¿½î¿µï¿½Ú¼ï¿½ï¿½ï¿½ï¿½) - MTD_PlayerFlags ï¿½ï¿½ï¿½
 	unsigned int	nCLID;			// ClanID
 	unsigned int	nEmblemChecksum;// Emblem Checksum
 };
@@ -176,7 +176,7 @@ enum MTD_WorldItemSubType
 	MTD_Static  = 1,
 };
 
-// ¾ÆÀÌÅÛ ½ºÆù Á¤º¸
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_WorldItem
 {
 	unsigned short	nUID;
@@ -193,46 +193,46 @@ struct MTD_WorldItem
 };
 
 
-// ¹Ù·Î°ÔÀÓÇÏ±â ÇÊÅÍ¸µ Á¤º¸
+// ï¿½Ù·Î°ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_QuickJoinParam
 {
-	u32	nMapEnum;		// ¿øÇÏ´Â ¸ÊÀÇ ºñÆ®¾î·¹ÀÌ
-	u32	nModeEnum;		// À©ÇÏ´Â °ÔÀÓ¸ðµåÀÇ ºñÆ®¾î·¹ÀÌ
+	u32	nMapEnum;		// ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½î·¹ï¿½ï¿½
+	u32	nModeEnum;		// ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½î·¹ï¿½ï¿½
 };
 
 
-// Ä³¸¯ÅÍÀÇ Å¬·£ ¾÷µ¥ÀÌÆ® Á¤º¸
+// Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 struct MTD_CharClanInfo
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
+	char				szClanName[CLAN_NAME_LENGTH];		// Å¬ï¿½ï¿½ ï¿½Ì¸ï¿½
 	MMatchClanGrade		nGrade;
 };
 
 
-// À¯Àú Á¤º¸º¸±â
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 struct MTD_CharInfo_Detail
 {
-	char				szName[32];						// ÀÌ¸§
-	char				szClanName[CLAN_NAME_LENGTH];	// Å¬·£ÀÌ¸§
-	MMatchClanGrade		nClanGrade;						// Å¬·£Á÷Ã¥
-	int					nClanContPoint;					// Å¬·£ ±â¿©µµ
-	unsigned short		nLevel;							// ·¹º§
-	char				nSex;							// ¼ºº°
-	char				nHair;							// ¸Ó¸® ÄÚ½ºÃõ
-	char				nFace;							// ¾ó±¼ ÄÚ½ºÃõ
+	char				szName[32];						// ï¿½Ì¸ï¿½
+	char				szClanName[CLAN_NAME_LENGTH];	// Å¬ï¿½ï¿½ï¿½Ì¸ï¿½
+	MMatchClanGrade		nClanGrade;						// Å¬ï¿½ï¿½ï¿½ï¿½Ã¥
+	int					nClanContPoint;					// Å¬ï¿½ï¿½ ï¿½â¿©ï¿½ï¿½
+	unsigned short		nLevel;							// ï¿½ï¿½ï¿½ï¿½
+	char				nSex;							// ï¿½ï¿½ï¿½ï¿½
+	char				nHair;							// ï¿½Ó¸ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½
+	char				nFace;							// ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½
 	u32	nXP;							// xp
 	int					nBP;							// bp
 
 	int					nKillCount;
 	int					nDeathCount;
 
-	// Á¢¼Ó»óÈ²
+	// ï¿½ï¿½ï¿½Ó»ï¿½È²
 
-	u32	nTotalPlayTimeSec;				// ÃÑ ÇÃ·¹ÀÌ ½Ã°£
-	u32	nConnPlayTimeSec;				// ÇöÀç Á¢¼Ó ½Ã°£
+	u32	nTotalPlayTimeSec;				// ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	u32	nConnPlayTimeSec;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
 
-	u32	nEquipedItemDesc[MMCIP_END];	// ¾ÆÀÌÅÛ Á¤º¸
+	u32	nEquipedItemDesc[MMCIP_END];	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	MMatchUserGradeID	nUGradeID;						// account UGrade
 
@@ -241,28 +241,28 @@ struct MTD_CharInfo_Detail
 };
 
 
-/// ¹æ ¸®½ºÆ® ´Þ¶ó°í ¿äÃ»ÇÒ¶§ º¸³»´Â ±¸Á¶Ã¼
+/// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Þ¶ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 struct MTD_StageListNode
 {
-	MUID			uidStage;							///< ¹æ UID
-	unsigned char	nNo;								///< ¹æ¹øÈ£
-	char			szStageName[STAGENAME_LENGTH];		///< ¹æÀÌ¸§
-	char			nPlayers;							///< ÇöÀçÀÎ¿ø
-	char			nMaxPlayers;						///< ÃÖ´ëÀÎ¿ø
-	STAGE_STATE		nState;								///< ÇöÀç»óÅÂ
-	MMATCH_GAMETYPE nGameType;							///< °ÔÀÓ Å¸ÀÔ
-	char			nMapIndex;							///< ¸Ê
-	int				nSettingFlag;						///< ¹æ ¼¼ÆÃ ÇÃ·¡±×(³­ÀÔ, ºñ¹Ð¹æ, ·¹º§Á¦ÇÑ)
-	char			nMasterLevel;						///< ¹æÀå ·¹º§
-	char			nLimitLevel;						///< Á¦ÇÑ·¹º§
+	MUID			uidStage;							///< ï¿½ï¿½ UID
+	unsigned char	nNo;								///< ï¿½ï¿½ï¿½È£
+	char			szStageName[STAGENAME_LENGTH];		///< ï¿½ï¿½ï¿½Ì¸ï¿½
+	char			nPlayers;							///< ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½
+	char			nMaxPlayers;						///< ï¿½Ö´ï¿½ï¿½Î¿ï¿½
+	STAGE_STATE		nState;								///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MMATCH_GAMETYPE nGameType;							///< ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
+	char			nMapIndex;							///< ï¿½ï¿½
+	int				nSettingFlag;						///< ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ð¹ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	char			nMasterLevel;						///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	char			nLimitLevel;						///< ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½
 };
 
-/// Å¬¶óÀÌ¾ðÆ®°¡ ¾Ë¾Æ¾ßÇÒ ±âÅ¸Á¤º¸ : AdminHide »óÅÂ¸¦ ¸í½ÃÀûÀ¸·Î ±³È¯ & ³ìÈ­ÆÄÀÏ¿¡ ÀúÀå
+/// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½Ë¾Æ¾ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ : AdminHide ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ & ï¿½ï¿½È­ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_ExtendInfo
 {
 	char			nTeam;
-	unsigned char	nPlayerFlags;	// ÇÃ·¹ÀÌ¾î ¼Ó¼º(¿î¿µÀÚ¼û±èµî) - MTD_PlayerFlags »ç¿ë
-	unsigned char	nReserved1;		// ¿©ºÐ
+	unsigned char	nPlayerFlags;	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ó¼ï¿½(ï¿½î¿µï¿½Ú¼ï¿½ï¿½ï¿½ï¿½) - MTD_PlayerFlags ï¿½ï¿½ï¿½
+	unsigned char	nReserved1;		// ï¿½ï¿½ï¿½ï¿½
 	unsigned char	nReserved2;
 };
 
@@ -276,80 +276,80 @@ struct MTD_PeerListNode
 };
 
 
-// µ¿ÀÇ ´äº¯ÀÚ
+// ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½
 struct MTD_ReplierNode
 {
 	char szName[MATCHOBJECT_NAME_LENGTH];
 };
 
 
-// ·¡´õ °ÔÀÓ ½ÅÃ» ÆÀ ±×·ì
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ ï¿½×·ï¿½
 struct MTD_LadderTeamMemberNode
 {
 	char szName[MATCHOBJECT_NAME_LENGTH];
 
 };
 
-// Å¬·£ Á¤º¸
+// Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_ClanInfo
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
-	short				nLevel;								// ·¹º§
-	int					nPoint;								// Æ÷ÀÎÆ®
-	int					nTotalPoint;						// ÅäÅ»Æ÷ÀÎÆ®
-	int					nRanking;							// ·©Å·
-	char				szMaster[MATCHOBJECT_NAME_LENGTH];	// Å¬·£ ¸¶½ºÅÍ
-	unsigned short		nWins;								// ÀüÀû - ½Â¼ö
-	unsigned short		nLosses;							// ÀüÀû - ÆÐ¼ö
-	unsigned short		nTotalMemberCount;					// ÀüÃ¼ Å¬·£¿ø¼ö
-	unsigned short		nConnedMember;						// ÇöÀç Á¢¼ÓµÈ Å¬·£¿ø¼ö
+	char				szClanName[CLAN_NAME_LENGTH];		// Å¬ï¿½ï¿½ ï¿½Ì¸ï¿½
+	short				nLevel;								// ï¿½ï¿½ï¿½ï¿½
+	int					nPoint;								// ï¿½ï¿½ï¿½ï¿½Æ®
+	int					nTotalPoint;						// ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½Æ®
+	int					nRanking;							// ï¿½ï¿½Å·
+	char				szMaster[MATCHOBJECT_NAME_LENGTH];	// Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	unsigned short		nWins;								// ï¿½ï¿½ï¿½ï¿½ - ï¿½Â¼ï¿½
+	unsigned short		nLosses;							// ï¿½ï¿½ï¿½ï¿½ - ï¿½Ð¼ï¿½
+	unsigned short		nTotalMemberCount;					// ï¿½ï¿½Ã¼ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	unsigned short		nConnedMember;						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	unsigned int		nCLID;								// ClanID
 	unsigned int		nEmblemChecksum;					// Emblem Checksum
 };
 
-// Å¬·£Àü ´ë±âÁßÀÎ Å¬·£ ¸®½ºÆ®
+// Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 struct MTD_StandbyClanList
 {
-	char				szClanName[CLAN_NAME_LENGTH];		// Å¬·£ ÀÌ¸§
-	short				nPlayers;							// ´ë±âÁßÀÎ ÀÎ¿ø¼ö
-	short				nLevel;								// ·¹º§
-	int					nRanking;							// ·©Å· - 0ÀÌ¸é unranked
+	char				szClanName[CLAN_NAME_LENGTH];		// Å¬ï¿½ï¿½ ï¿½Ì¸ï¿½
+	short				nPlayers;							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½
+	short				nLevel;								// ï¿½ï¿½ï¿½ï¿½
+	int					nRanking;							// ï¿½ï¿½Å· - 0ï¿½Ì¸ï¿½ unranked
 	unsigned int		nCLID;								// ClanID
 	unsigned int		nEmblemChecksum;					// Emblem Checksum
 };
 
 
-// Äù½ºÆ®, ¼­¹ÙÀÌ¹úÀÇ °ÔÀÓ Á¤º¸
+// ï¿½ï¿½ï¿½ï¿½Æ®, ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_QuestGameInfo
 {
-	unsigned short		nQL;												// Äù½ºÆ® ·¹º§
-	float				fNPC_TC;											// NPC ³­ÀÌµµ Á¶Àý °è¼ö
-	unsigned short		nNPCCount;											// ¼½ÅÍ´ç µîÀåÇÒ NPC°³¼ö
+	unsigned short		nQL;												// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+	float				fNPC_TC;											// NPC ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	unsigned short		nNPCCount;											// ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPCï¿½ï¿½ï¿½ï¿½
 
-	unsigned char		nNPCInfoCount;										// µîÀåÇÒ NPC Á¾·ù °³¼ö
-	unsigned char		nNPCInfo[MAX_QUEST_NPC_INFO_COUNT];					// µîÀåÇÒ NPC Á¤º¸
-	unsigned short		nMapSectorCount;									// ¸Ê ³ëµå °³¼ö
-	unsigned short		nMapSectorID[MAX_QUEST_MAP_SECTOR_COUNT];			// ¸Ê ³ëµå ID
-	char				nMapSectorLinkIndex[MAX_QUEST_MAP_SECTOR_COUNT];	// ¸Ê ³ëµåÀÇ Link Index
+	unsigned char		nNPCInfoCount;										// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	unsigned char		nNPCInfo[MAX_QUEST_NPC_INFO_COUNT];					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC ï¿½ï¿½ï¿½ï¿½
+	unsigned short		nMapSectorCount;									// ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	unsigned short		nMapSectorID[MAX_QUEST_MAP_SECTOR_COUNT];			// ï¿½ï¿½ ï¿½ï¿½ï¿½ ID
+	char				nMapSectorLinkIndex[MAX_QUEST_MAP_SECTOR_COUNT];	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Link Index
 
 };
 
-// Äù½ºÆ®, º¸»ó ³»¿ë
+// ï¿½ï¿½ï¿½ï¿½Æ®, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_QuestReward
 {
-	MUID				uidPlayer;	// ÇØ´ç ÇÃ·¹ÀÌ¾î UID
-	int					nXP;		// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ ¾òÀº XP
-	int					nBP;		// ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ ¾òÀº BP
+	MUID				uidPlayer;	// ï¿½Ø´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ UID
+	int					nXP;		// ï¿½Ø´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ XP
+	int					nBP;		// ï¿½Ø´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ BP
 };
 
-// Äù½ºÆ® ¾ÆÀÌÅÛ º¸»ó ³»¿ë
+// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_QuestItemNode
 {
 	int		m_nItemID;
 	int		m_nCount;
 };
 
-// Äù½ºÆ® ÀÏ¹Ý ¾ÆÀÌÅÛ º¸»ó ³»¿ë
+// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct MTD_QuestZItemNode
 {
 	unsigned int		m_nItemID;
@@ -370,21 +370,21 @@ struct MTD_ServerStatusInfo
 
 struct MTD_ResetTeamMembersData
 {
-	MUID			m_uidPlayer;		// ÇØ´ç ÇÃ·¹ÀÌ¾î
-	char			nTeam;				// ÆÀ
+	MUID			m_uidPlayer;		// ï¿½Ø´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
+	char			nTeam;				// ï¿½ï¿½
 };
 
 
-// µà¾ó Å¥ Á¤º¸
+// ï¿½ï¿½ï¿½ Å¥ ï¿½ï¿½ï¿½ï¿½
 
 struct MTD_DuelQueueInfo
 {
 	MUID			m_uidChampion;
 	MUID			m_uidChallenger;
-	MUID			m_WaitQueue[14];				// ÆÀ
+	MUID			m_WaitQueue[14];				// ï¿½ï¿½
 	char			m_nQueueLength;
-	char			m_nVictory;						// ¿¬½Â¼ö
-	bool			m_bIsRoundEnd;					// ¶ó¿îµå ³¡³¯¶§ÀÎ°¡
+	char			m_nVictory;						// ï¿½ï¿½ï¿½Â¼ï¿½
+	bool			m_bIsRoundEnd;					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
 };
 
 struct MTD_GunGameWeaponInfo
@@ -423,6 +423,7 @@ struct ZPACKEDSHOTINFO {
 	short	posx, posy, posz;
 	short	tox, toy, toz;
 	u8	sel_type;
+	std::string zItemCRC32;
 };
 
 struct ZPACKEDDASHINFO {
@@ -434,7 +435,7 @@ struct ZPACKEDDASHINFO {
 #pragma pack(pop, old)
 
 
-// admin Àü¿ë
+// admin ï¿½ï¿½ï¿½ï¿½
 enum ZAdminAnnounceType
 {
 	ZAAT_CHAT = 0,
@@ -449,8 +450,8 @@ void Make_MTDAccountItemNode(MTD_AccountItemNode* pout, int nAIID, u32 nItemID, 
 
 void Make_MTDQuestItemNode( MTD_QuestItemNode* pOut, const u32 nItemID, const int nCount );
 
-// °æÇèÄ¡, °æÇèÄ¡ ºñÀ²À» 4byte·Î Á¶ÇÕ
-// »óÀ§ 2¹ÙÀÌÆ®´Â °æÇèÄ¡, ÇÏÀ§ 2¹ÙÀÌÆ®´Â °æÇèÄ¡ÀÇ ÆÛ¼¾Æ®ÀÌ´Ù.
+// ï¿½ï¿½ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4byteï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Û¼ï¿½Æ®ï¿½Ì´ï¿½.
 inline u32 MakeExpTransData(int nAddedXP, int nPercent)
 {
 	u32 ret = 0;

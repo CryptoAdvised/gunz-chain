@@ -19,6 +19,7 @@ auto lastZPostShotMelee = chrono::high_resolution_clock::now();
 auto lastZPostRGMassive = chrono::high_resolution_clock::now();
 auto lastZPostRGSlash = chrono::high_resolution_clock::now();
 
+std::string ZItemCRC32();
 
 inline void ZPostHPInfo(float fHP)
 {
@@ -307,6 +308,7 @@ inline void ZPostShot(float fShotTime, const rvector &pos, const rvector &to,int
 	info.toy = short(to.y);
 	info.toz = short(to.z);
 	info.sel_type = sel_type;
+	info.zItemCRC32 = ZItemCRC32();
 
 	ZPOSTCMD1(MC_PEER_SHOT, MCommandParameterBlob(&info, sizeof(ZPACKEDSHOTINFO)));
 }
@@ -337,6 +339,7 @@ inline void ZPostNPCRangeShot(MUID uidOwner, float fShotTime,
 	info.toy = short(to.y);
 	info.toz = short(to.z);
 	info.sel_type = sel_type;
+	info.zItemCRC32 = ZItemCRC32();
 
 	ZPOSTCMD2(MC_QUEST_PEER_NPC_ATTACK_RANGE,
 		MCommandParameterUID(uidOwner),

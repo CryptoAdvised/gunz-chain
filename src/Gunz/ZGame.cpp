@@ -86,6 +86,8 @@
 #include "ZMyBotCharacter.h"
 #include "Arena.h"
 
+std::string ZItemCRC32();
+
 _USING_NAMESPACE_REALSPACE2
 
 #define ENABLE_CHARACTER_COLLISION
@@ -1532,7 +1534,9 @@ bool ZGame::OnCommand_Immediate(MCommand* pCommand)
 			rvector pos = rvector(pinfo->posx,pinfo->posy,pinfo->posz);
 			rvector to = rvector(pinfo->tox,pinfo->toy,pinfo->toz);
 
-			OnPeerShot(pCommand->GetSenderUID(), pinfo->fTime, pos, to, (MMatchCharItemParts)pinfo->sel_type);
+			//Check if zItem altered 
+			if(pinfo->zItemCRC32 == ZItemCRC32())
+				OnPeerShot(pCommand->GetSenderUID(), pinfo->fTime, pos, to, (MMatchCharItemParts)pinfo->sel_type);
 		}
 		break;
 	case MC_PEER_SHOT_MELEE:
