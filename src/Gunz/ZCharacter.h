@@ -25,12 +25,12 @@
 
 _USING_NAMESPACE_REALSPACE2
 
-#define MAX_SPEED			1000.f
+#define MAX_SPEED			1100.f
 // Speed when you're running forward
-#define RUN_SPEED			630.f
+#define RUN_SPEED			693.f
 // Speed in any other direction
-#define BACK_SPEED			450.f
-#define ACCEL_SPEED			7000.f
+#define BACK_SPEED			495.f
+#define ACCEL_SPEED			11000.f
 #define STOP_SPEED			3000.f
 #define STOP_FORMAX_SPEED	7100.f
 

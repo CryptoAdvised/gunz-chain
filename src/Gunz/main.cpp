@@ -487,7 +487,7 @@ RRESULT OnRender(void *pParam)
 				const auto& Lower = ZGetGame()->m_pMyCharacter->GetStateLower();
 				const auto& Upper = ZGetGame()->m_pMyCharacter->GetStateUpper();
 
-				const auto AniSpeedMultiplier = 4.8f;
+				const auto AniSpeedMultiplier = 7.2f;
 
 				PrintText("Lower ani: %s\n", g_AnimationInfoTableLower[Lower].Name);
 				PrintText("Upper ani: %s\n", g_AnimationInfoTableUpper[Upper].Name);
