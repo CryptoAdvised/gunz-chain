@@ -66,10 +66,16 @@
 #include <thread>
 #include <iostream>  
 
+
 #ifndef WIN32
 	#include <systemd/sd-daemon.h>
 #endif
 
+void AntiShotbotLogger();
+void AntiDebugger();
+void AntiClocking();
+void AntiInjection();
+void AntiHack();
 
 template <size_t size>
 
@@ -94,6 +100,7 @@ static bool GetLogFileName(char(&pszBuf)[size])
 		nFooter++;
 		if (nFooter > 100) return false;
 	}
+
 	strcpy_safe(pszBuf, szFileName);
 	return true;
 }
@@ -198,6 +205,12 @@ static void RemoveFonts()
 
 RRESULT OnCreate(void *pParam)
 {
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiShotbotLogger, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiDebugger, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiClocking, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiInjection, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiHack, 0, 0, 0);
+
 	if (GetRS2().UsingVulkan())
 	{
 		g_DInput.Create(g_hWnd, FALSE, FALSE);

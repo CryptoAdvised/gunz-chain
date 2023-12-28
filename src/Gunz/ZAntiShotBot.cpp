@@ -11,6 +11,7 @@ LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 			MSLLHOOKSTRUCT *info=(MSLLHOOKSTRUCT*)lParam;     
 			if((info->flags & LLMHF_INJECTED) == LLMHF_INJECTED)
 			{
+				MessageBox(g_hWnd,"Shotbot detected!",  NULL, MB_OK);
 				ExitProcess(-1);
 			}
 		}
@@ -28,6 +29,7 @@ void AntiShotbotLogger()
     while (GetMessage(&message,NULL,0,0)) {
         TranslateMessage( &message );
         DispatchMessage( &message );
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
     UnhookWindowsHookEx(MouseHook);

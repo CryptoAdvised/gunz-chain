@@ -154,8 +154,8 @@ void ZMyCharacter::ProcessInput(float fDelta)
 
 			//Air Control
 			if(!m_bLand){
-				forward *= 150.f;
-				right *= 150.f;
+				forward *= 110.f;
+				right *= 110.f;
 			}
 
 			if (ZIsActionKeyDown(ZACTION_FORWARD) == true)
