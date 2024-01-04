@@ -1242,7 +1242,80 @@ bool ZGame::OnCommand_Immediate(MCommand* pCommand)
 		else
 			ZChatOutputF("%s completed course %s in %.02f seconds!", pSender.GetUserName(), szCourse, fTime);
 	}
-		break;
+	break;
+	case MC_PEER_KILL_STREAKS:
+    {
+        char szName[MAX_CHARNAME_LENGTH];
+        int nStreaks;
+
+        if (!pCommand->GetParameter(szName, 0, MPT_STR, sizeof(szName))) break;
+        if (!pCommand->GetParameter(&nStreaks, 1, MPT_INT)) break;
+
+        char szMessage[128];
+
+        if (nStreaks == 2)
+        {
+		    ZGetGameInterface()->PlayVoiceSound("nar/double-kill", 1600);
+            sprintf(szMessage, "%s has a double kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+        else if (nStreaks == 3)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/triple-kill", 1600);
+            sprintf(szMessage, "%s has a triple kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 4)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/quadra-kill", 1600);
+            sprintf(szMessage, "%s has a quatra kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 5)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/penta-kill", 1600);
+            sprintf(szMessage, "%s has a penta kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 6)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/killing-spree", 1600);
+            sprintf(szMessage, "%s is on a killing spree! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 7)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/rampage", 1600);
+            sprintf(szMessage, "%s rampage! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 8)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/unstopable", 1600);
+            sprintf(szMessage, "%s unstopable! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 9)
+		{
+			ZGetGameInterface()->PlayVoiceSound("nar/dominating", 1600);
+            sprintf(szMessage, "%s is dominating! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks >= 10)
+        {
+			ZGetGameInterface()->PlayVoiceSound("nar/legendary", 1600);
+            sprintf(szMessage, "%s is legendary! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks >= 15)
+		{
+			ZGetGameInterface()->PlayVoiceSound("nar/god-like", 1600);
+            sprintf(szMessage, "%s is god like! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+
+    }
+  break;
 	case MC_MATCH_RECEIVE_VOICE_CHAT:
 	{
 		MUID uid;
@@ -3439,9 +3512,15 @@ void ZGame::OnPeerDieMessage(ZCharacter* pVictim, ZCharacter* pAttacker)
 	{
 		ZTransMsg( szMsg, MSG_GAME_WIN_FROM_WHO, 1, szVictim );
 		ZChatOutput(MCOLOR(0xFF80FFFF), szMsg);
+		nStreaks += 1;
+		if (nStreaks > 1)
+		{
+			ZPostKillStreaks(szAttacker, nStreaks);
+		}
 	}
 	else if (pVictim == m_pMyCharacter)
 	{
+		nStreaks = 0;
 		ZChatOutputF("%s has defeated you. (HP: %d / %d, AP: %d / %d)",
 			szAttacker,
 			pAttacker->GetHP(), (int)pAttacker->GetProperty()->fMaxHP,

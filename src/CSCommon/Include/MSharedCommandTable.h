@@ -481,6 +481,7 @@ enum Type : uint32_t
 //
 // 8000-8999: Random custom RGunz commands
 //
+
 #define MC_PEER_RG_SLASH 8000
 #define MC_PEER_RG_MASSIVE 8801
 #define MC_PEER_PORTAL 8802
@@ -536,6 +537,7 @@ enum Type : uint32_t
 #define MC_PEER_CHAT_ICON			10053
 #define MC_PEER_REACTION			10054
 #define MC_PEER_ENCHANT_DAMAGE		10055
+#define MC_PEER_KILL_STREAKS        10056
 
 //
 // 21000-21999: Quest gameroom stuff

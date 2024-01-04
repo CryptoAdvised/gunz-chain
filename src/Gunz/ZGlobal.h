@@ -4,7 +4,7 @@
 //#include "RMesh.h"
 #include "ZApplication.h"
 
-// Àü¿ªÀûÀ¸·Î »ç¿ëÇÏ´Â °ÍÀº ÀÌ°÷¿¡´Ù ³Öµµ·Ï ÇÏÀÚ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //#ifdef LOCALE_BRAZIL
 //#define APPLICATION_NAME		"The Duel"
 //#else
@@ -13,7 +13,7 @@
 
 #define APPLICATION_NAME "GunZ-Chain"
 
-// ÀúÀåµÇ´Â Æú´õ
+// ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½
 //#ifdef LOCALE_BRAZIL
 //#define GUNZ_FOLDER			"/The Duel"
 //#else
@@ -24,6 +24,7 @@
 #define REPLAY_FOLDER		"/Replay"
 #define EMBLEM_FOLDER		"/Emblem"
 
+extern int nStreaks;
 
 class MZFileSystem;
 class MMessenger;

@@ -2143,8 +2143,8 @@ void ZMyCharacter::OnBlast(rvector &dir)
 
 void ZMyCharacter::OnTumble(int nDir)
 {
-#define SWORD_DASH		1200.f
-#define GUN_DASH        1000.f
+#define SWORD_DASH		2200.f
+#define GUN_DASH        2000.f
 	if (IsDead() || m_bWallJump || m_bGuard || m_bDrop || m_bWallJump2 || m_bTumble || m_bWallHang ||
 		m_bBlast || m_bBlastFall || m_bBlastDrop || m_bBlastStand || m_bBlastAirmove ||
 		m_bCharging || m_bSlash || m_bJumpSlash || m_bJumpSlashLanding ||

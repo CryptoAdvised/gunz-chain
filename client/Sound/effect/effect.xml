@@ -267,6 +267,16 @@
 	<EFFECT NAME="nar/NAR28"					type="1"/>
 	<EFFECT NAME="nar/NAR29"					type="1"/>
 	<EFFECT NAME="nar/level_up"					type="1"/>
+	<EFFECT NAME="nar/double-kill"					type="1"/>
+	<EFFECT NAME="nar/triple-kill"					type="1"/>
+	<EFFECT NAME="nar/quadra-kill"					type="1"/>
+	<EFFECT NAME="nar/penta-kill"					type="1"/>
+	<EFFECT NAME="nar/dominating"					type="1"/>
+	<EFFECT NAME="nar/godlike"					type="1"/>
+	<EFFECT NAME="nar/killing-spree"					type="1"/>
+	<EFFECT NAME="nar/legendary"					type="1"/>
+	<EFFECT NAME="nar/rampage"					type="1"/>
+	<EFFECT NAME="nar/unstopable"					type="1"/>
 
 	<!-- MALE: Sound additions -->
 	<EFFECT NAME="we_mal_01"	MINDISTANCE="320"/> <!-- Laugh -->
