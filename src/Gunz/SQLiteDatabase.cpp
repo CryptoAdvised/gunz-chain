@@ -7,7 +7,7 @@
 #include "MMatchTransDataType.h"
 #include <cstdarg>
 #include "MCRC32.h"
-
+#include <sstream>
 
 //
 // SQLiteError
@@ -527,6 +527,109 @@ try
 		Username, AID, StringView{ PasswordData, PasswordSize });
 
 	CommitTransaction();
+
+	///////////////////////////////////////////////////////
+	/*HANDLE hInputRead, hInputWrite;
+    HANDLE hOutputRead, hOutputWrite;
+    HANDLE hErrorRead, hErrorWrite;
+    SECURITY_ATTRIBUTES saAttr;
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
+
+    // Create a pipe for the child process's STDIN
+    if (!CreatePipe(&hInputRead, &hInputWrite, &saAttr, 0)) {
+        //std::cerr << "Stdin pipe creation failed\n";
+        //return 1;
+    }
+
+    // Create a pipe for the child process's STDOUT
+    if (!CreatePipe(&hOutputRead, &hOutputWrite, &saAttr, 0)) {
+        //std::cerr << "Stdout pipe creation failed\n";
+        //return 1;
+    }
+
+    // Create a pipe for the child process's STDERR
+    if (!CreatePipe(&hErrorRead, &hErrorWrite, &saAttr, 0)) {
+        //std::cerr << "Stderr pipe creation failed\n";
+        //return 1;
+    }
+
+    // Ensure the write handle to the pipe for STDIN is not inherited
+    SetHandleInformation(hInputWrite, HANDLE_FLAG_INHERIT, 0);
+    SetHandleInformation(hOutputWrite, HANDLE_FLAG_INHERIT, 0);
+    SetHandleInformation(hErrorWrite, HANDLE_FLAG_INHERIT, 0);
+
+    // Create the child process
+    PROCESS_INFORMATION piProcInfo;
+    STARTUPINFO siStartInfo;
+    ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
+    ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
+    siStartInfo.cb = sizeof(STARTUPINFO);
+    siStartInfo.hStdError = hErrorWrite;
+    siStartInfo.hStdOutput = hOutputWrite;
+    siStartInfo.hStdInput = hInputRead;
+    siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
+    siStartInfo.wShowWindow = SW_HIDE;
+
+    if (!CreateProcess(TEXT("gzeth.dll"), TEXT("account new"), NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo)) {
+        //std::cerr << "CreateProcess failed\n";
+        CloseHandle(hInputWrite);
+        CloseHandle(hInputRead);
+        CloseHandle(hOutputWrite);
+        CloseHandle(hOutputRead);
+        CloseHandle(hErrorWrite);
+        CloseHandle(hErrorRead);
+        //return 1;
+    }
+
+    // Write to the pipe that is the standard input for the child process
+    std::string input = std::string(Username) + std::string(PasswordData) + "\n" + std::string(Username) + std::string(PasswordData) + "\n";
+    DWORD written;
+    WriteFile(hInputWrite, input.c_str(), input.size(), &written, NULL);
+
+    // Read output from the child process
+    char buffer[4096];
+    DWORD bytesRead;
+    std::string output;
+    while (true) {
+        BOOL success = ReadFile(hOutputRead, buffer, sizeof(buffer), &bytesRead, NULL);
+        if (!success || bytesRead == 0) break;
+        output.append(buffer, bytesRead);
+    }
+
+    CloseHandle(hInputWrite);
+    CloseHandle(hInputRead);
+    CloseHandle(hOutputWrite);
+    CloseHandle(hOutputRead);
+    CloseHandle(hErrorWrite);
+    CloseHandle(hErrorRead);
+    CloseHandle(piProcInfo.hProcess);
+    CloseHandle(piProcInfo.hThread);
+
+    // Parse the output
+    std::string publicAddress;
+    std::string keyFilePath;
+	std::istringstream iss(output);  // Correct initialization of std::istringstream
+	std::string line;
+	while (std::getline(iss, line)) {  // Correct use of std::getline
+		if (line.find("Public address of the key:") != std::string::npos) {
+			publicAddress = line.substr(line.find("0x"));
+		}
+		if (line.find("Path of the secret key file:") != std::string::npos) {
+			keyFilePath = line.substr(line.find("C:\\"));
+		}
+	}
+
+	MLog("Public address of the key: %s\n", publicAddress.c_str());
+	MLog("Path of the secret key file: %s\n", keyFilePath.c_str());
+
+	Sleep(1000);
+
+	HWND hwnd = FindWindowW(L"GunZ-Chain", NULL);
+	SetForegroundWindow(hwnd);
+    ShowWindow(hwnd, SW_MAXIMIZE);*/
+	//////////////////////////////////////////////////////
 
 	return AccountCreationResult::Success;
 }

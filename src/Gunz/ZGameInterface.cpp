@@ -218,7 +218,7 @@ bool InitItemList(MWidget* pWidget)
 		char szName[256], szItem[256];
 		int d = i % 6;
 		sprintf_safe(szItem, "item%03d.png", d);
-		sprintf_safe(szName, "³ª¹«ºí·¹ÀÌµå%d", i);
+		sprintf_safe(szName, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½%d", i);
 		AddListItem(pList, MBitmapManager::Get(szItem), szName, "Command Something");
 	}
 
@@ -927,7 +927,7 @@ bool ZGameInterface::OnGameCreate()
 	g_pGame = m_pGame;
 	if (!m_pGame->Create(ZApplication::GetFileSystem(), &gameLoading))
 	{
-		mlog("ZGame »ý¼º ½ÇÆÐ\n");
+		mlog("ZGame ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½\n");
 		SAFE_DELETE(m_pGame);
 		g_pGame = NULL;
 		m_bLoading = false;
@@ -1072,7 +1072,7 @@ void ZGameInterface::OnLoginCreate()
 	}
 
 
-	// ÆÐ³Î ÀÌ¹ÌÁö ·Îµù
+	// ï¿½Ð³ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½
 	if (m_pLoginPanel != NULL)
 	{
 		delete m_pLoginPanel;
@@ -3868,7 +3868,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nResLevel) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "Á¦ÇÑ·¹º§:%d", pItemDesc->m_nResLevel);
+		sprintf_safe(temp, "ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½:%d", pItemDesc->m_nResLevel);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3879,7 +3879,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nWeight) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "¹«°Ô:%d", pItemDesc->m_nWeight);
+		sprintf_safe(temp, "ï¿½ï¿½ï¿½ï¿½:%d", pItemDesc->m_nWeight);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3890,7 +3890,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nMaxBullet) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "ÃÖ´ëÅº¼ö : %d", pItemDesc->m_nMaxBullet);
+		sprintf_safe(temp, "ï¿½Ö´ï¿½Åºï¿½ï¿½ : %d", pItemDesc->m_nMaxBullet);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3913,7 +3913,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nDamage) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "°ø°Ý·Â : %d", pItemDesc->m_nDamage);
+		sprintf_safe(temp, "ï¿½ï¿½ï¿½Ý·ï¿½ : %d", pItemDesc->m_nDamage);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3924,7 +3924,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nDelay) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "µô·¹ÀÌ : %d", pItemDesc->m_nDelay);
+		sprintf_safe(temp, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : %d", pItemDesc->m_nDelay);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3935,7 +3935,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nReloadTime) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "ÀåÀü½Ã°£ : %d", pItemDesc->m_nReloadTime);
+		sprintf_safe(temp, "ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ : %d", pItemDesc->m_nReloadTime);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -3968,7 +3968,7 @@ bool GetItemDescStr(string& str, DWORD nItemID) {
 
 	if (pItemDesc->m_nMaxWT) {
 		if (bAdd) str += " / ";
-		sprintf_safe(temp, "+ÃÖ´ë¹«°Ô : %d", pItemDesc->m_nMaxWT);
+		sprintf_safe(temp, "+ï¿½Ö´ë¹«ï¿½ï¿½ : %d", pItemDesc->m_nMaxWT);
 
 		nLen = (int)strlen(temp);
 		if ((int)str.size() + nLen > (nLine + 1) * MAX_TOOLTIP_LINE_STRING + 3) { str += "\n"; nLine++; }
@@ -4339,7 +4339,7 @@ void ZGameInterface::SelectShopTab(int nTabIndex)
 			pil->m_ListFilter = sel;
 	}
 
-	// ¹öÆ° ¼³Á¤
+	// ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
 	MButton* pButton = (MButton*)pResource->FindWidget("BuyConfirmCaller");
 	if (pButton)
 	{
@@ -5635,7 +5635,7 @@ void ZGameInterface::OnResponseBuyQuestItem(const int nResult, const int nBP)
 	}
 	else
 	{
-		mlog("ZGameInterface::OnCommand::MC_MATCH_RESPONSE_BUY_QUEST_ITEM - Á¤ÀÇµÇÁö ¾ÊÀº °á°úÃ³¸®.\n");
+		mlog("ZGameInterface::OnCommand::MC_MATCH_RESPONSE_BUY_QUEST_ITEM - ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã³ï¿½ï¿½.\n");
 		ASSERT(0);
 	}
 }
@@ -5751,7 +5751,7 @@ void ZGameInterface::OnResponseServerStatusInfoList(const int nListCount, void* 
 			MTD_ServerStatusInfo* pss = (MTD_ServerStatusInfo*)MGetBlobArrayElement(pBlob, i);
 			if (0 == pss)
 			{
-				mlog("ZGameInterface::OnResponseServerStatusInfoList - %d¹øÂ°¿¡¼­ NULLÆ÷ÀÎÅÍ ¹ß»ý.", i);
+				mlog("ZGameInterface::OnResponseServerStatusInfoList - %dï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ NULLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½.", i);
 				continue;
 			}
 

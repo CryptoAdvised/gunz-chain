@@ -14,7 +14,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// ï¿½Ñ±ï¿½ï¿½ï¿½ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -44,13 +44,13 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-            VALUE "CompanyName", "International GunZ"
-            VALUE "FileDescription", "GunZ"
+            VALUE "CompanyName", "Gunz-Chain"
+            VALUE "FileDescription", "GunZ-Chain"
             VALUE "FileVersion", "1, 0, 0"
-            VALUE "InternalName", "GunZ"
-            VALUE "LegalCopyright", "Copyright (c) - 2020 International GunZ"
+            VALUE "InternalName", "GunZ-Chain"
+            VALUE "LegalCopyright", "Copyright (c) CryptoAdvised"
             VALUE "OriginalFilename", "Gunz.exe"
-            VALUE "ProductName", "GunZ"
+            VALUE "ProductName", "GunZ-Chain"
             VALUE "ProductVersion", "1, 0, 0"
         END
     END
@@ -96,7 +96,7 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "icon1.ico"
-#endif    // ÇÑ±¹¾î resources
+#endif    // ï¿½Ñ±ï¿½ï¿½ï¿½ resources
 /////////////////////////////////////////////////////////////////////////////
 
 

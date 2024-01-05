@@ -158,7 +158,9 @@ public:
 	bool LoadConfig(const char* szFileName);
 	bool Save() { return Save(GetLocale()->szXmlHeader); }
 	bool Save( const char* szHeader)	{
-		std::string szConfigPath = FILENAME_CONFIG;
+		std::string szConfigPath = GetMyDocumentsPath();
+		szConfigPath += GUNZ_FOLDER;
+		szConfigPath += FILENAME_CONFIG;
 		MakePath(szConfigPath.c_str());
 		return SaveToFile(szConfigPath.c_str(), szHeader);
 	}

@@ -5,7 +5,9 @@
 /PartsIndexer.exe
 /PartsIndexer.pdb
 /.vs
-
+/Log/*
+/Logs/*
 /*.exe
 /*.sq3
+/*.sq3-journal
 /*.dmp

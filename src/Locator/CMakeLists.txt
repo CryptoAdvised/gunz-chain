@@ -6,7 +6,7 @@ file(GLOB src
 add_target(NAME Locator TYPE STATIC SOURCES "${src}")
 
 target_include_directories(Locator PRIVATE
-	../MatchServer
+	../Gunz
 	../RealSpace2/Include
 	../SafeUDP/Include
 	../MCountryFilter/Include
