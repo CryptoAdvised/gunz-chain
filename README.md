@@ -69,7 +69,7 @@ Requisites:
 
 1. Download the client files.
 
-	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases/tag/0.0.0.1)
+	- [Client files](https://github.com/CryptoAdvised/gunz-chain/releases)
 
 2. Retrieve updated files from `\source\build\win32\bin\Release` and replace GunZ.exe in client folder.
 3. Run GunZ.exe from client folder (DO NOT USE Launcher.exe as it will downgrade to what is placed on the website for patching).
