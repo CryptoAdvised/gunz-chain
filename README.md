@@ -8,17 +8,24 @@ This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated
 
 # Other implemented features
 -Anti-shotbot
+
 -Anti-cheat (0delay, speedhack, flipmower, lawnmower, insane massive...)
+
 -Anti-debbuger
+
 -Anti dll injection
+
 -Anti-clocking
+
 -Bunch of anti exploit
 
 -Level up sound
--Kill streaks system
--Filecheck crc32 on zitem
--Fixed template, interface and widescreen
 
+-Kill streaks system
+
+-Filecheck crc32 on zitem
+
+-Fixed template, interface and widescreen
 
 -Matchserver crashs fix
 
