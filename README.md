@@ -16,7 +16,7 @@ This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated
 
 -Anti-debbuger
 
--Anti dll injection
+-Anti-injection
 
 -Anti-clocking
 
