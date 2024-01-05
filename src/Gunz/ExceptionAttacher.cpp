@@ -5,6 +5,7 @@
 #include "MCrashDump.h"
 #include "MMatchStatus.h"
 #include "MMatchServer.h"
+#include "ZGlobal.h"
 
 #ifndef _DEBUG
 #define SUPPORT_EXCEPTIONHANDLING
@@ -30,8 +31,8 @@ static bool GetRecommandLogFileName(char* pszBuf)
 
 	int nFooter = 1;
 	while(TRUE) {
-		sprintf(szFileName, "Log/MatchLog_%02d-%02d-%02d-%d.txt", 
-			ptmTime->tm_year+1900, ptmTime->tm_mon+1, ptmTime->tm_mday, nFooter);
+		sprintf(szFileName, "%s%s/Logs/MatchLog_%02d-%02d-%02d-%d.txt", 
+			GetMyDocumentsPath(),GUNZ_FOLDER,ptmTime->tm_year+1900, ptmTime->tm_mon+1, ptmTime->tm_mday, nFooter);
 
 		if (PathFileExists(szFileName) == FALSE)
 			break;

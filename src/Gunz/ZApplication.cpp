@@ -757,7 +757,7 @@ void ZApplication::OnRestore()
 
 void ZApplication::Exit()
 {
-	exit(-1);
+	exit(0);
 	PostMessage(g_hWnd,WM_CLOSE,0,0);
 }
 

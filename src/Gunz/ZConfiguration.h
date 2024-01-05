@@ -129,9 +129,9 @@ struct ZCONFIG_LOCALE
 
 struct ZCONFIG_CHAT
 {
-	std::string Font = "Arial";
+	std::string Font = "Segoe UI";
 	bool BoldFont = true;
-	int FontSize = 16;
+	int FontSize = 12;
 
 	// 50% transparent black
 	u32 BackgroundColor = 0x80000000;

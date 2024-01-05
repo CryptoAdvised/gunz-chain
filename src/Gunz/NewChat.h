@@ -72,9 +72,9 @@ public:
 	bool HideDuringReplays{};
 
 private:
-	std::string FontName = "Arial";
+	std::string FontName = "Segoe UI";
 	bool BoldFont = true;
-	int FontSize = 16;
+	int FontSize = 12;
 	int FontHeight{};
 	TimeType FadeTime = Seconds(10);
 	std::vector<struct ChatMessage> Msgs;

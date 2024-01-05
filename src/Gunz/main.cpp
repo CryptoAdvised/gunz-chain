@@ -66,18 +66,24 @@
 #include <thread>
 #include <iostream>  
 
+
 #ifndef WIN32
 	#include <systemd/sd-daemon.h>
 #endif
 
+void AntiShotbotLogger();
+void AntiDebugger();
+void AntiClocking();
+void AntiInjection();
+void AntiHack();
 
 template <size_t size>
 
 
 static bool GetLogFileName(char(&pszBuf)[size])
 {
-	if (!MFile::IsDir("Log"))
-		MFile::CreateDir("Log");
+	if (!MFile::IsDir("Logs"))
+		MFile::CreateDir("Logs");
 
 	struct tm	tmTime = *localtime(&unmove(time(0)));
 
@@ -85,8 +91,8 @@ static bool GetLogFileName(char(&pszBuf)[size])
 
 	int nFooter = 1;
 	while (true) {
-		sprintf_safe(szFileName, "Log/MatchLog_%02d-%02d-%02d-%d.txt",
-			tmTime.tm_year + 1900, tmTime.tm_mon + 1, tmTime.tm_mday, nFooter);
+		sprintf(szFileName, "%s%s/Logs/MatchLog_%02d-%02d-%02d-%d.txt", 
+			GetMyDocumentsPath(),GUNZ_FOLDER,ptmTime->tm_year+1900, ptmTime->tm_mon+1, ptmTime->tm_mday, nFooter);
 
 		if (!MFile::IsFile(szFileName))
 			break;
@@ -94,6 +100,7 @@ static bool GetLogFileName(char(&pszBuf)[size])
 		nFooter++;
 		if (nFooter > 100) return false;
 	}
+
 	strcpy_safe(pszBuf, szFileName);
 	return true;
 }
@@ -198,6 +205,15 @@ static void RemoveFonts()
 
 RRESULT OnCreate(void *pParam)
 {
+	//Load gzeth
+    //system("gzeth.dll init %~dp0/system/genesis.json")
+
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiShotbotLogger, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiDebugger, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiClocking, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiInjection, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)AntiHack, 0, 0, 0);
+
 	if (GetRS2().UsingVulkan())
 	{
 		g_DInput.Create(g_hWnd, FALSE, FALSE);
@@ -487,7 +503,7 @@ RRESULT OnRender(void *pParam)
 				const auto& Lower = ZGetGame()->m_pMyCharacter->GetStateLower();
 				const auto& Upper = ZGetGame()->m_pMyCharacter->GetStateUpper();
 
-				const auto AniSpeedMultiplier = 4.8f;
+				const auto AniSpeedMultiplier = 7.2f;
 
 				PrintText("Lower ani: %s\n", g_AnimationInfoTableLower[Lower].Name);
 				PrintText("Upper ani: %s\n", g_AnimationInfoTableUpper[Upper].Name);
@@ -764,10 +780,10 @@ int PASCAL GunzMain(HINSTANCE this_inst, HINSTANCE prev_inst, LPSTR cmdline, int
 
 #ifdef ONECLIENT
 	// Create a mutex so we can't run multiple clients
-	Mutex = CreateMutex(NULL, TRUE, "iGunZ");
+	Mutex = CreateMutex(NULL, TRUE, "GunZ-Chain");
 	if (GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		MessageBox(0, "International GunZ is already running", "iGunZ", 0);
+		MessageBox(0, "GunZ-Chain is already running", "GunZ-Chain", 0);
 		exit(-1);
 		return 0;
 	}
@@ -782,7 +798,7 @@ int PASCAL GunzMain(HINSTANCE this_inst, HINSTANCE prev_inst, LPSTR cmdline, int
 	// Seed the random number generator rand() from the C standard library
 	srand((unsigned int)time(nullptr));
 
-	mlog("International GunZ v%d.%d.%d-%X launched. Build date: " __DATE__ " " __TIME__ "\n",
+	mlog("GunZ-Chain v%d.%d.%d-%X launched. Build date: " __DATE__ " " __TIME__ "\n",
 		RGUNZ_VERSION_MAJOR, RGUNZ_VERSION_MINOR, RGUNZ_VERSION_PATCH, RGUNZ_VERSION_REVISION);
 
 	char szDateRun[128]; szDateRun[0] = 0;

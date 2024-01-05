@@ -1190,6 +1190,10 @@ void MAddSharedCommandTable(MCommandManager* CommandManager, MSharedCommandType:
 
 		C(MC_PEER_DIE, "Peer.Die", "Die", MCDT_PEER2PEER);
 			P(MPT_UID, "Attacker");
+		
+		C(MC_PEER_KILL_STREAKS, "Peer.Kill.Streaks", "Kill Streaks System", MCDT_PEER2PEER);
+      		P(MPT_STR, "szName");
+      		P(MPT_INT, "nStreaks");
 
 		C(MC_PEER_SPAWN, "Peer.Spawn", "Spawn", MCDT_PEER2PEER);
 			P(MPT_POS, "Position");
@@ -1220,6 +1224,7 @@ void MAddSharedCommandTable(MCommandManager* CommandManager, MSharedCommandType:
 			P(MPT_UINT, "TimeStamp");
 		C(MC_PEER_PONG, "Peer.Pong", "Pong", MCDT_PEER2PEER | MCCT_NON_ENCRYPTED);
 			P(MPT_UINT, "TimeStamp");
+
 	}
 
 	if (IsTypeAnyOf(Agent)) {

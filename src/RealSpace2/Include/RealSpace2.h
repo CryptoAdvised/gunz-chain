@@ -80,8 +80,10 @@ bool	RIsSupportVS();
 bool	RIsAvailUserClipPlane();
 bool	RIsTrilinear();
 int		RGetApproxVMem();
+int		RGetIs16x9();
 int		RGetScreenWidth();
 int		RGetScreenHeight();
+int     RGetIsWidthScreen();
 inline float RGetAspect() { return float(RGetScreenWidth()) / RGetScreenHeight(); }
 int		RGetPicmip();
 RPIXELFORMAT RGetPixelFormat();

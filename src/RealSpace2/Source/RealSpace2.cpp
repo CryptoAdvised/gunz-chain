@@ -112,8 +112,10 @@ bool RIsHardwareTNL() { return g_bHardwareTNL; }
 bool RIsSupportVS() { return g_bSupportVS; }
 bool RIsTrilinear() { return g_bTrilinear; }
 bool RIsAvailUserClipPlane() { return g_bAvailUserClipPlane; }
+int RGetIs16x9(){ return (float(g_nScreenHeight) / float(g_nScreenWidth) == 0.5625f) ? 1 : 0; }
 int RGetScreenWidth() { return g_nScreenWidth; }
 int RGetScreenHeight() { return g_nScreenHeight; }
+int RGetIsWidthScreen()	{ return (float(g_nScreenHeight) / float(g_nScreenWidth) == 0.625f) ? 1 : 0; }
 int RGetPicmip() { return g_nPicmip; }
 RPIXELFORMAT RGetPixelFormat() { return g_PixelFormat; }
 LPDIRECT3DDEVICE9	RGetDevice() { return g_pd3dDevice; }

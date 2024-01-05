@@ -129,7 +129,7 @@ void ZMyCharacter::ProcessInput(float fDelta)
 	}
 
 	static float rotatez = 0.f, rotatex = 9 * PI_FLOAT / 10.f;
-
+	
 	m_Accel = rvector(0, 0, 0);
 
 	rvector right;
@@ -151,6 +151,13 @@ void ZMyCharacter::ProcessInput(float fDelta)
 				m_Accel += vec;
 				ButtonPressed = true;
 			};
+
+			//Air Control
+			if(!m_bLand){
+				forward *= 110.f;
+				right *= 110.f;
+			}
+
 			if (ZIsActionKeyDown(ZACTION_FORWARD) == true)
 				AddAccel(forward);
 			if (ZIsActionKeyDown(ZACTION_BACK) == true)
@@ -168,12 +175,13 @@ void ZMyCharacter::ProcessInput(float fDelta)
 
 		float fRatio = GetMoveSpeedRatio();
 
-		if (!m_bLand) {
-			if (Magnitude(rvector(GetVelocity().x, GetVelocity().y, 0)) < RUN_SPEED * fRatio)
-				m_Accel *= AIR_MOVE;
-			else
-				m_Accel *= 0;
-		}
+		//Air Control
+		//if (!m_bLand) {
+		//	if (Magnitude(rvector(GetVelocity().x, GetVelocity().y, 0)) < RUN_SPEED * fRatio)
+		//		m_Accel *= AIR_MOVE;
+		//	else
+		//		m_Accel *= 0;
+		//}
 
 		bool bWallJump = false;
 		int nWallJumpDir = -1;
@@ -2135,8 +2143,8 @@ void ZMyCharacter::OnBlast(rvector &dir)
 
 void ZMyCharacter::OnTumble(int nDir)
 {
-#define SWORD_DASH		1000.f
-#define GUN_DASH        900.f
+#define SWORD_DASH		2200.f
+#define GUN_DASH        2000.f
 	if (IsDead() || m_bWallJump || m_bGuard || m_bDrop || m_bWallJump2 || m_bTumble || m_bWallHang ||
 		m_bBlast || m_bBlastFall || m_bBlastDrop || m_bBlastStand || m_bBlastAirmove ||
 		m_bCharging || m_bSlash || m_bJumpSlash || m_bJumpSlashLanding ||

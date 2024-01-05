@@ -644,9 +644,9 @@
 			<W>208</W>
 			<H>36</H>
 		</BOUNDS>
-		<BITMAP type="up">start_game_off.tga</BITMAP>
-		<BITMAP type="over">start_game_on.tga</BITMAP>
-		<BITMAP type="down">start_game_on.tga</BITMAP>
+		<BITMAP type="up">start_game_off.png</BITMAP>
+		<BITMAP type="over">start_game_on.png</BITMAP>
+		<BITMAP type="down">start_game_on.png</BITMAP>
 		<STRETCH/>
 		<DEFAULTKEY>ENTER</DEFAULTKEY>
 	</BMBUTTON>

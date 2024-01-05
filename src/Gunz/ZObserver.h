@@ -65,11 +65,11 @@ public:
 	void NextLookMode();
 
 	bool OnKeyEvent(bool bCtrl, char nKey);
-
-private:
-	void ShowInfo(bool bShow);
+	
 	void SetTarget(ZCharacter* pCharacter);
 	void SetTarget(const MUID& muid);
+private:
+	void ShowInfo(bool bShow);
 	bool IsVisibleSetTarget(ZCharacter* pCharacter);
 	void CheckDeadTarget();
 

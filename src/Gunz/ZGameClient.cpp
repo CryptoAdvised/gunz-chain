@@ -1363,6 +1363,7 @@ void ZGameClient::OnGameLevelUp(const MUID& uidChar)
 			char temp[256] = "";
 			ZTransMsg(temp, MSG_GAME_LEVEL_UP, 1, pCharacter->GetUserAndClanName());
 			ZChatOutput(MCOLOR(ZCOLOR_GAME_INFO), temp);
+			ZGetSoundEngine()->PlaySound("nar/level_up", pCharacter->GetPosition(), false, false); //Levelup sound
 		}
 	}
 }
