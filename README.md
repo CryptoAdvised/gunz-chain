@@ -20,13 +20,11 @@ This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated
 
 -Anti-clocking
 
--Bunch of anti exploit
+-Bunch of anti exploit (like filecheck crc32 on zitem)
 
 -Level up sound
 
 -Kill streaks system
-
--Filecheck crc32 on zitem
 
 -Fixed template, interface and widescreen
 
