@@ -10,6 +10,8 @@ This is the Gunz-Chain source repo for GunZ.exe, MatchServer.exe, and associated
 -Gunz.exe and Matchserver.exe are now merged making it standalone... everyone now become it's own matchserver. 
 (Incomplete: decentralise data management still need to be added)
 
+-Optimized game mechanics
+
 -Anti-shotbot
 
 -Anti-cheat (0delay, speedhack, flipmower, lawnmower, insane massive...)
