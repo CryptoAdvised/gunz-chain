@@ -1056,12 +1056,19 @@ void MAddSharedCommandTable(MCommandManager* CommandManager, MSharedCommandType:
 			P(MPT_UID, "uidKillerPlayer");
 			P(MPT_UID, "uidNPC"); // NPC id
 
+		C(MC_PEER_MONSTER_KILL_STREAKS, "Peer.Monster.Kill.Streaks", "Monster Kill Streaks System", MCDT_PEER2PEER);
+    		P(MPT_STR, "szName");
+    		P(MPT_INT, "nStreaks");
+
+
 		C(MC_QUEST_TEST_REQUEST_NPC_SPAWN,	"Quest.Test.RequestNPCSpawn", "NPC Spawn", MCDT_MACHINE2MACHINE);
 			P(MPT_INT,  "NPC Type");
 			P(MPT_INT,	"NPC Count");
 		C(MC_QUEST_TEST_REQUEST_CLEAR_NPC,		"Quest.Test.ClearNPC", "Clear NPC", MCDT_MACHINE2MACHINE);
 		C(MC_QUEST_TEST_REQUEST_SECTOR_CLEAR,	"Quest.Test.SectorClear", "Sector Clear", MCDT_MACHINE2MACHINE);
 		C(MC_QUEST_TEST_REQUEST_FINISH,			"Quest.Test.Finish", "Finish Quest", MCDT_MACHINE2MACHINE);
+
+
 
 		C(MC_TEST_BIRDTEST1, "Test.BirdTest1", "BirdTest1", MCDT_MACHINE2MACHINE);
 			P(MPT_INT, "Result");

@@ -24,6 +24,7 @@
 #include "RBspObject.h"
 #include "reinterpret.h"
 
+
 ZQuest::ZQuest() : MBaseQuest(), m_bLoaded(false), m_bCreatedOnce(false)
 {
 	memset(&m_Cheet, 0, sizeof(m_Cheet));
@@ -355,33 +356,38 @@ bool ZQuest::OnNPCSpawn(MCommand* pCommand)
 	return true;
 }
 
-bool ZQuest::OnNPCDead(MCommand* pCommand)
-{
-	MUID uidPlayer, uidNPC;
+bool ZQuest::OnNPCDead(MCommand* pCommand) {
+    MUID uidPlayer, uidNPC;
 
-	pCommand->GetParameter(&uidPlayer,	0, MPT_UID);
-	pCommand->GetParameter(&uidNPC,		1, MPT_UID);
+    pCommand->GetParameter(&uidPlayer, 0, MPT_UID);
+    pCommand->GetParameter(&uidNPC, 1, MPT_UID);
 
-	ZActor* pActor = ZGetObjectManager()->GetNPCObject(uidNPC);
-	if (pActor)
-	{
-		pActor->OnDie();
-		ZGetObjectManager()->Delete(pActor);
+    ZActor* pActor = ZGetObjectManager()->GetNPCObject(uidNPC);
+    if (pActor) {
+        pActor->OnDie();
+        ZGetObjectManager()->Delete(pActor);
 
-		m_GameInfo.IncreaseNPCKilled();
+        m_GameInfo.IncreaseNPCKilled();
 
-		ZCharacter* pCharacter = ZGetCharacterManager()->Find(uidPlayer);
-		if (pCharacter)
-		{
-			ZModule_QuestStatus* pMod = (ZModule_QuestStatus*)pCharacter->GetModule(ZMID_QUESTSTATUS);
-			if (pMod)
-			{
-				pMod->AddKills();
-			}
-		}
-	}
+        ZCharacter* pCharacter = ZGetCharacterManager()->Find(uidPlayer);
+        if (pCharacter) {
+            ZModule_QuestStatus* pMod = (ZModule_QuestStatus*)pCharacter->GetModule(ZMID_QUESTSTATUS);
+            if (pMod) {
+                pMod->AddKills();
+            }
 
-	return true;
+            // Monster kill streak logic
+            if (pCharacter == ZGetGame()->m_pMyCharacter) {
+                nMonsterStreaks++;
+                if (nMonsterStreaks > 1) {
+                    ZPostMonsterKillStreaks(pCharacter->GetUserName(), nMonsterStreaks);
+					if(nMonsterStreaks >= 16) nMonsterStreaks =0;
+                }
+            }
+        }
+    }
+
+    return true;
 }
 
 /*
@@ -655,6 +661,7 @@ bool ZQuest::OnClearAllNPC(MCommand* pCommand)
 
 bool ZQuest::OnQuestRoundStart(MCommand* pCommand)
 {
+	nMonsterStreaks = 0;
 	unsigned char nRound;
 	pCommand->GetParameter(&nRound,		0, MPT_UCHAR);
 
@@ -668,6 +675,7 @@ bool ZQuest::OnQuestRoundStart(MCommand* pCommand)
 
 bool ZQuest::OnQuestPlayerDead(MCommand* pCommand)
 {
+	nMonsterStreaks = 0;
 	MUID uidVictim;
 	pCommand->GetParameter(&uidVictim,		0, MPT_UID);
 
@@ -757,6 +765,7 @@ bool ZQuest::OnQuestCombatState(MCommand* pCommand)
 
 bool ZQuest::OnMovetoPortal(MCommand* pCommand)
 {
+
 	char nCurrSectorIndex;
 	MUID uidPlayer;
 
@@ -840,6 +849,7 @@ bool ZQuest::OnReadyToNewSector(MCommand* pCommand)
 
 bool ZQuest::OnSectorStart(MCommand* pCommand)
 {
+	nMonsterStreaks = 0;
 	char nSectorIndex;
 	pCommand->GetParameter(&nSectorIndex,	0, MPT_CHAR);
 
@@ -875,6 +885,7 @@ bool ZQuest::OnSectorStart(MCommand* pCommand)
 
 bool ZQuest::OnQuestCompleted(MCommand* pCommand)
 {
+	nMonsterStreaks = 0;
 	m_bIsQuestComplete = true;
 
 	MCommandParameter* pParam = pCommand->GetParameter(0);

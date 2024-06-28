@@ -14,7 +14,7 @@
 
 ZRule::ZRule(ZMatch* pMatch)
 {
-	m_pMatch = pMatch;				// ÃÊ±âÈ­ =_=
+	m_pMatch = pMatch;				// ï¿½Ê±ï¿½È­ =_=
 }
 
 ZRule::~ZRule()
@@ -90,7 +90,7 @@ ZRule* ZRule::CreateRule(ZMatch* pMatch, MMATCH_GAMETYPE nGameType)
 		break;
 	case MMATCH_GAMETYPE_SKILLMAP:
 	{
-								 return (new ZRuleSkillmap(pMatch));
+			return (new ZRuleSkillmap(pMatch));
 	}
 		break;
 	case MMATCH_GAMETYPE_GUNGAME:
@@ -100,7 +100,7 @@ ZRule* ZRule::CreateRule(ZMatch* pMatch, MMATCH_GAMETYPE nGameType)
 		break;
 	default:
 		{
-			// °ÔÀÓ Å¸ÀÔÀÌ ¾ø½À´Ï´Ù.
+			// ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 			_ASSERT(0);
 		}
 	}
