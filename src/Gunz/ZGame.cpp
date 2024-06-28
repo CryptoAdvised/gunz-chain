@@ -1252,64 +1252,143 @@ bool ZGame::OnCommand_Immediate(MCommand* pCommand)
         if (!pCommand->GetParameter(&nStreaks, 1, MPT_INT)) break;
 
         char szMessage[128];
+		
+		ZCharacter* pCharacter = ZGetGame()->m_pMyCharacter;
+		if (!pCharacter) break; // If character not found, exit
 
         if (nStreaks == 2)
         {
-		    ZGetGameInterface()->PlayVoiceSound("nar/double-kill", 1600);
+			ZGetSoundEngine()->PlaySound("nar/double-kill", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s has a double kill! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
         else if (nStreaks == 3)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/triple-kill", 1600);
+			ZGetSoundEngine()->PlaySound("nar/triple-kill", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s has a triple kill! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 4)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/quadra-kill", 1600);
+			ZGetSoundEngine()->PlaySound("nar/quadra-kill", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s has a quatra kill! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 5)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/penta-kill", 1600);
+			ZGetSoundEngine()->PlaySound("nar/penta-kill", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s has a penta kill! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 6)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/killing-spree", 1600);
+			ZGetSoundEngine()->PlaySound("nar/killing-spree", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s is on a killing spree! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 7)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/rampage", 1600);
+			ZGetSoundEngine()->PlaySound("nar/rampage", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s rampage! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 8)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/unstopable", 1600);
+			ZGetSoundEngine()->PlaySound("nar/unstopable", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s unstopable! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks == 9)
 		{
-			ZGetGameInterface()->PlayVoiceSound("nar/dominating", 1600);
+			ZGetSoundEngine()->PlaySound("nar/dominating", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s is dominating! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks >= 10)
         {
-			ZGetGameInterface()->PlayVoiceSound("nar/legendary", 1600);
+			ZGetSoundEngine()->PlaySound("nar/legendary", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s is legendary! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }
 		else if (nStreaks >= 15)
 		{
-			ZGetGameInterface()->PlayVoiceSound("nar/god-like", 1600);
+			ZGetSoundEngine()->PlaySound("nar/god-like", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s is god like! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+
+    }
+  break;
+	case MC_PEER_MONSTER_KILL_STREAKS:
+    {
+        char szName[MAX_CHARNAME_LENGTH];
+        int nStreaks;
+
+        if (!pCommand->GetParameter(szName, 0, MPT_STR, sizeof(szName))) break;
+        if (!pCommand->GetParameter(&nStreaks, 1, MPT_INT)) break;
+
+        char szMessage[128];
+		
+		ZCharacter* pCharacter = ZGetGame()->m_pMyCharacter;
+		if (!pCharacter) break; // If character not found, exit
+
+        if (nStreaks == 2)
+        {
+			ZGetSoundEngine()->PlaySound("nar/double-kill", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s has a double kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+        else if (nStreaks == 3)
+        {
+			ZGetSoundEngine()->PlaySound("nar/triple-kill", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s has a triple kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 4)
+        {
+			ZGetSoundEngine()->PlaySound("nar/quadra-kill", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s has a quatra kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 5)
+        {
+			ZGetSoundEngine()->PlaySound("nar/penta-kill", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s has a penta kill! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 6)
+        {
+			ZGetSoundEngine()->PlaySound("nar/killing-spree", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s is on a killing spree! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 8)
+        {
+			ZGetSoundEngine()->PlaySound("nar/rampage", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s rampage! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 10)
+        {
+			ZGetSoundEngine()->PlaySound("nar/unstopable", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s unstopable! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 12)
+		{
+			ZGetSoundEngine()->PlaySound("nar/dominating", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s is dominating! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 14)
+        {
+			ZGetSoundEngine()->PlaySound("nar/legendary", pCharacter->GetPosition(), false, false);
+            sprintf(szMessage, "%s is legendary! (%d kill streaks)", szName, nStreaks);
+            ZChatOutput(MCOLOR(255,255,255), szMessage);
+        }
+		else if (nStreaks == 16)
+		{
+			ZGetSoundEngine()->PlaySound("nar/god-like", pCharacter->GetPosition(), false, false);
             sprintf(szMessage, "%s is god like! (%d kill streaks)", szName, nStreaks);
             ZChatOutput(MCOLOR(255,255,255), szMessage);
         }

@@ -408,6 +408,11 @@ inline void ZPostKillStreaks(const char* szName, int nStreaks)
   ZPOSTCMD2(MC_PEER_KILL_STREAKS, MCmdParamStr(szName), MCommandParameterInt(nStreaks))
 }
 
+inline void ZPostMonsterKillStreaks(const char* szName, int nStreaks) {
+   ZPOSTCMD2(MC_PEER_MONSTER_KILL_STREAKS, MCmdParamStr(szName), MCommandParameterInt(nStreaks));
+}
+
+
 inline void ZPostRequestTimeSync(u32 nTimeStamp)
 {
 	ZPOSTCMD1(MC_MATCH_GAME_REQUEST_TIMESYNC, MCmdParamUInt(nTimeStamp));

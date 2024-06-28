@@ -25,6 +25,7 @@
 #define EMBLEM_FOLDER		"/Emblem"
 
 extern int nStreaks;
+extern int nMonsterStreaks;
 
 class MZFileSystem;
 class MMessenger;

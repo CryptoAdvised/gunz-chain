@@ -440,6 +440,7 @@ enum Type : uint32_t
 #define MC_QUEST_PEER_NPC_SKILL_START		6044
 #define MC_QUEST_PEER_NPC_SKILL_EXECUTE		6045
 #define MC_QUEST_PEER_NPC_DEAD				6046
+#define MC_PEER_MONSTER_KILL_STREAKS 		6047
 
 // Quest game status
 #define MC_QUEST_GAME_INFO					6051

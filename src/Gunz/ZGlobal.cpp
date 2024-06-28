@@ -4,6 +4,8 @@
 #include "ZQuest.h"
 
 int nStreaks = 0;
+int nMonsterStreaks = 0;
+MBMatchServer MatchServer;
 
 bool ZIsLaunchDevelop(void) { 
 	return ZApplication::GetInstance()->IsLaunchDevelop(); 
