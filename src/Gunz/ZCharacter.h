@@ -22,6 +22,7 @@
 #include "AnimationStuff.h"
 #include "BasicInfoHistory.h"
 #include "ZReplayStructs.h"
+#include "ZActor.h"
 
 _USING_NAMESPACE_REALSPACE2
 
@@ -143,6 +144,7 @@ public:
 
 	virtual void OnUpdate(float fDelta) override;
 	void UpdateSpeed();
+	ZBrain* GetBrain() { return m_pBrain; }
 	float GetMoveSpeedRatio();
 
 	void UpdateVelocity(float fDelta);
@@ -375,6 +377,7 @@ public:
 	bool IsBot = false;
 
 protected:
+	ZBrain* m_pBrain; 
 	void UpdateSound();
 
 	void InitMesh();

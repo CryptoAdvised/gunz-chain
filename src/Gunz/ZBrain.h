@@ -41,7 +41,7 @@ protected:
 	void ProcessAttack(float fDelta);
 	void ProcessBuildPath(float fDelta);
 	void DefaultAttack(MQUEST_NPC_ATTACK nNpcAttackType);
-	void UseSkill(int nSkill, MUID& uidTarget, rvector& vTargetPos);
+	
 
 	float MakePathFindingUpdateTime(char nIntelligence);
 	float MakeAttackUpdateTime(char nAgility);
@@ -56,7 +56,7 @@ public:
 	ZActor* GetBody()		{ return m_pBody; }
 	ZObject* GetTarget();
 	void DebugTest();
-
+	void UseSkill(int nSkill, MUID& uidTarget, rvector& vTargetPos);
 	static float MakeSpeed(float fSpeed);
 	static ZBrain* CreateBrain(MQUEST_NPC nNPCType);
 };

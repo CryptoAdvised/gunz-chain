@@ -1275,4 +1275,207 @@
 	</MAP>
 </SPECIAL_SCENARIO>
 
+<SPECIAL_SCENARIO id="99"
+  title="KingBoo"
+  QL="1"
+  DC="1"
+  mapset="Dungeon"
+  XP="120000"
+  BP="10000">
+  <SACRI_ITEM itemid="200099" />	<!-- Custom Item: Summon KingBoo -->
+
+  <MAP dice="1" key_sector="312" key_npc="99" boss="true" >
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+  <MAP dice="2" key_sector="312" key_npc="99" boss="true">
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+  <MAP dice="3" key_sector="312" key_npc="99" boss="true">
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+  <MAP dice="4" key_sector="312" key_npc="99" boss="true">
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+  <MAP dice="5" key_sector="312" key_npc="99" boss="true">
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+  <MAP dice="6" key_sector="312" key_npc="99" boss="true">
+    <NPCSET_ARRAY>B01/B02/B03</NPCSET_ARRAY>
+  </MAP>
+</SPECIAL_SCENARIO>
+
+<SPECIAL_SCENARIO id="556"
+
+    title="Goblin Super Boss"
+    QL="1"
+    DC="1"
+    mapset="Mansion"
+    XP="10000000"
+    BP="500000">
+
+      <SACRI_ITEM itemid="050592" />
+
+    <MAP dice="1" key_sector="102" key_npc="214" boss="true" >
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+    <MAP dice="2" key_sector="102" key_npc="214" boss="true">
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+    <MAP dice="3" key_sector="102" key_npc="214" boss="true">
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+    <MAP dice="4" key_sector="102" key_npc="214" boss="true">
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+    <MAP dice="5" key_sector="102" key_npc="214" boss="true">
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+    <MAP dice="6" key_sector="102" key_npc="214" boss="true">
+        <NPCSET_ARRAY>G61</NPCSET_ARRAY>
+        <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="11" rate="0.2" />
+            <NPC npcid="214" rate="0.3" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.2" />
+            <NPC npcid="214" rate="0.1" />
+        </JACO>
+    </MAP>
+</SPECIAL_SCENARIO>  
+
+<SPECIAL_SCENARIO id="557"
+  title="Giant shark"
+  QL="1"
+  DC="1"
+  mapset="Mansion"
+  XP="120000"
+  BP="10000">
+  <SACRI_ITEM itemid="200100" />	<!-- Custom Item: Shark boo -->
+
+  <MAP dice="1" key_sector="110" key_npc="215" boss="true" >
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+  <MAP dice="2" key_sector="110" key_npc="215" boss="true">
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+  <MAP dice="3" key_sector="110" key_npc="215" boss="true">
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+  <MAP dice="4" key_sector="110" key_npc="215" boss="true">
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+  <MAP dice="5" key_sector="110" key_npc="215" boss="true">
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+  <MAP dice="6" key_sector="110" key_npc="215" boss="true">
+    <NPCSET_ARRAY>G01</NPCSET_ARRAY>
+		    <JACO count="2" tick="5" min_npc="0" max_npc="13">
+            <NPC npcid="21" rate="0.1" />
+			<NPC npcid="22" rate="0.1" />
+            <NPC npcid="31" rate="0.19" />
+			<NPC npcid="32" rate="0.1" />
+            <NPC npcid="48" rate="0.1" />
+			<NPC npcid="41" rate="0.1" />
+			<NPC npcid="161" rate="0.1" />
+			<NPC npcid="98" rate="0.1" />
+            <NPC npcid="214" rate="0.1" />
+            <NPC npcid="215" rate="0.01" />
+        </JACO>
+  </MAP>
+</SPECIAL_SCENARIO>
+
 </XML>

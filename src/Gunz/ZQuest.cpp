@@ -381,7 +381,7 @@ bool ZQuest::OnNPCDead(MCommand* pCommand) {
                 nMonsterStreaks++;
                 if (nMonsterStreaks > 1) {
                     ZPostMonsterKillStreaks(pCharacter->GetUserName(), nMonsterStreaks);
-					if(nMonsterStreaks >= 16) nMonsterStreaks =0;
+					if(nMonsterStreaks >= 21) nMonsterStreaks =0;
                 }
             }
         }

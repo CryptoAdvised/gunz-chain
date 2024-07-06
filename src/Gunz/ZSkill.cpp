@@ -51,12 +51,15 @@ bool ZSkillDesc::IsEffectiveTo(ZObject *pTarget)
 		if(nModDamage>0 || nModLastDamage>0 || nModDoT>0) return true;
 		if(bModRoot) return true;
 	}
+	
 
 	ZModule_Movable *pModule_Movable = (ZModule_Movable*)pTarget->GetModule(ZMID_MOVABLE);
 	if(pModule_Movable) {
 		if(nModSpeed<100 && nModSpeed*.01f<pModule_Movable->GetMoveSpeedRatio()) return true;
 	}
 
+
+	
 	return false;
 }
 
@@ -382,10 +385,12 @@ bool ZSkill::Update(float fElapsed)
 			if(pTarget->IsDead()) continue;
 			float fDamage = m_pDesc->nModDoT;
 			if(CheckRange(pTarget->GetPosition(),pTarget) && m_pDesc->CheckResist(pTarget,&fDamage)) {
-				if(g_pGame->IsAttackable(m_pOwner,pTarget)) {
+				//if(g_pGame->IsAttackable(m_pOwner,pTarget)) {
 					if(fDamage)
 						pTarget->OnDamaged(m_pOwner,m_TargetPos,ZD_MELEE,MWT_KATANA,fDamage,m_pDesc->nModCriticalRate*.01f);
-				}
+					
+		
+				//}
 			}
 		}
 	}
@@ -419,9 +424,7 @@ bool ZSkill::CheckRange(const rvector& center, ZObject *pCurrent)
 
 	switch(m_pDesc->nEffectType) {
 		case ZSE_WHOLE_AREA : return true;
-		case ZSE_ENEMY :
-			if(ZGetGame()->IsAttackable(m_pOwner,pCurrent)) return true;
-			return false;
+		case ZSE_ENEMY : return true;
 		case ZSE_ALLIED :
 			if(m_pOwner->GetTeamID()==pCurrent->GetTeamID()) return true;
 			return false;
@@ -477,14 +480,15 @@ void ZSkill::LastExecute(const MUID& uidTarget, const rvector& targetPos )
 		if(pTarget->IsDead()) continue;
 		float fDamage = m_pDesc->nModLastDamage;
 		if(CheckRange(pTarget->GetPosition(),pTarget) && m_pDesc->CheckResist(pTarget,&fDamage)) {
-			if(g_pGame->IsAttackable(m_pOwner,pTarget)) {
+			//if(g_pGame->IsAttackable(m_pOwner,pTarget)) {
 				if(fDamage)
 					pTarget->OnDamaged(m_pOwner,m_TargetPos,ZD_MELEE,MWT_KATANA,fDamage,m_pDesc->nModCriticalRate*.01f);
-			}
-			else {
+					
+			//}
+			//else {
 				if(m_pDesc->nModHeal)
 					pTarget->OnHealing(m_pOwner,m_pDesc->nModHeal,m_pDesc->nModRepair);
-			}
+			//}
 		}
 	}
 }
@@ -552,16 +556,17 @@ void ZSkill::Use(const MUID& uidTarget, const rvector& targetPos)
 
 			if ( CheckRange( pTargetObject->GetPosition(), pObject) && m_pDesc->CheckResist( pObject, &fDamage))
 			{
-				if ( g_pGame->IsAttackable( m_pOwner, pObject))
-				{
+				//if ( g_pGame->IsAttackable( m_pOwner, pObject))
+				//{
 					if ( fDamage && (uidTarget == pObject->GetUID()))
 						pObject->OnDamaged( m_pOwner, m_TargetPos, ZD_MELEE, MWT_KATANA, fDamage, m_pDesc->nModCriticalRate*.01f);
-				}
-				else
-				{
+						
+				//}
+				//else
+				//{
 					if ( m_pDesc->nModHeal)
 						pObject->OnHealing( m_pOwner, m_pDesc->nModHeal, m_pDesc->nModRepair);
-				}
+				//}
 
 				if ( m_pDesc->bModRoot)
 				{

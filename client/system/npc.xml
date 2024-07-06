@@ -1641,7 +1641,9 @@
 	 <ATTACK type="melee" range="150" weaponitem_id="300011" />
 	 <SPEED default="300" />
 	 <DROP table="E01" />
-</NPC><!-- 스켈레톤(이벤트용) -->
+</NPC>
+
+<!-- 스켈레톤(이벤트용) -->
 <NPC id="131"
 	 name="STR:NPC_NAME_31"
 	 desc="STR:NPC_DESC_31"
@@ -1661,4 +1663,94 @@
 	 <SPEED default="160" rotate="2.356" />
 	 <FLAG never_pushed="true" never_attack_cancel="true" />
 	 <DROP table="E01" />
-</NPC></XML>
+</NPC>
+
+<NPC id="98"
+   name="Boo"
+   desc="Regular boo"
+   meshname="boo"
+   scale="1.0 1.0 1.0"
+   grade="veteran"
+   max_hp="50"
+   max_ap="100"
+   int="4"
+   agility="2"
+   view_angle="40"
+   dc="7"
+   offensetype="1"
+   dyingtime="5">
+   <COLLISION radius="35" height="140" />
+   <FLAG never_pushed="true" />
+   <ATTACK type="melee" range="170" weaponitem_id="300014" />
+   <SPEED default="360" />
+   <DROP table="G16" />
+</NPC>
+
+<NPC id="99"
+   name="KingBoo"
+   desc="King boo"
+   meshname="kingboo"
+   scale="2.0 2.0 2.0"
+   grade="boss"
+   max_hp="8000"
+   max_ap="8000"
+   int="1"
+   agility="4"
+   view_angle="60"
+   dc="50"
+   offensetype="1"
+   dyingtime="5">
+   <COLLISION radius="25" height="120" />
+   <ATTACK type="melee" range="80"  />
+   <FLAG never_blasted="true" never_pushed="true" never_attack_cancel="true" />
+   <SPEED default="150" rotate="2.356" />
+   <SKILL id="162" /> <!-- Goblin Kings: Fire missle -->
+   <DROP table="G16" />
+</NPC>
+
+<NPC id="214"
+     name="STR:NPC_NAME_13"
+     desc="STR:NPC_DESC_13"
+     meshname="goblinW"
+     scale="2.8 2.8 2.8"
+     grade="boss"
+     max_hp="7000"
+     max_ap="8000"
+     int="4"
+     agility="4"
+     view_angle="25"
+     dc="6"
+     offensetype="1"
+     dyingtime="5">
+     <COLLISION radius="30" height="200" />
+     <ATTACK type="melee" range="130" weaponitem_id="300013" />
+     <SPEED default="400" />
+     <SKILL id="131" />
+     <SKILL id="132" />
+     <SKILL id="341" />
+     <DROP table="G13" />
+</NPC>  
+
+<NPC id="215"
+	 name="Shark Boss"
+	 desc="Sea Monster"
+	 meshname="shark"
+	 scale="6.0 6.0 6.0"
+	 grade="boss"
+	 max_hp="8000"
+	 max_ap="8000"
+	 int="1"
+	 agility="4"
+	 view_angle="60"
+	 dc="50"
+	 offensetype="1"
+	 dyingtime="5">
+	 <COLLISION radius="60" height="20" />
+	 <ATTACK type="melee" range="80"  />
+	 <FLAG never_blasted="true" never_pushed="true" never_attack_cancel="true" />
+	 <SPEED default="190" rotate="2.356" />
+	 <SKILL id="451" />
+	 <SKILL id="392" />
+	 <DROP table="P45" />
+</NPC>
+</XML>

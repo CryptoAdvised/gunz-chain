@@ -30,4 +30,8 @@
 	
 	<AddXml name="Scrider" 	filename="model/npc/Scrider/Scrider.xml" autoload = "false">  </AddXml>
 	
+	<AddXml name="boo" filename="model/npc/boo/boo.xml" autoload = "false">  </AddXml>
+	<AddXml name="kingboo" 	filename="model/npc/boo/kingboo.xml" autoload = "false">  </AddXml>
+	
+	<AddXml name="shark" 	filename="model/npc/Shark/shark.xml" autoload = "false">  </AddXml>
 </XML>
