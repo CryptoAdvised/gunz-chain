@@ -107,4 +107,15 @@
 <!-- Monster bible -->
 	<ITEM id="210001" name="STR:QITEM_NAME_210001" level="0" type="monbible" desc="STR:QITEM_DESC_210001"
 		unique="0" price="0" secrifice="0" param="0" />
+
+	<!-- Boo Quest Item -->
+<ITEM id="200099" name="Summon KingBoo" level="0" type="skull" desc="Try and fail." unique="0" price="0" secrifice="1" param="0" />
+
+<!-- Goblin Super Quest -->
+<ITEM id="050592" name="Goblin Super Boss" level="0" type="doll" desc="Endless Quest." unique="0" price="1" secrifice="1" param="0" />  
+
+<!-- Shark -->
+<ITEM id="200100" name="Shark Boo" level="0" type="doll" desc="Terror of the sea." unique="0" price="1" secrifice="1" param="0" />  
+
+
 </XML>

@@ -122,6 +122,15 @@
 			<TARGET sector="Mansion_Room2"	/>
 		</LINK>
 	</SECTOR>
+
+	<SECTOR id="110"
+	  title="lol"
+	  melee_spawn="15"
+	  range_spawn="15">
+	</SECTOR>
+	<LINK name="link01">
+			<TARGET sector="lol"	/>
+	</LINK>
 </MAPSET>
 
 
@@ -288,6 +297,35 @@
 			<TARGET sector="Dungeon_nest1" />
 		</LINK>
 	</SECTOR>
+	
+	<SECTOR id="310"
+	  title="BooS1"
+	  melee_spawn="15"
+	  range_spawn="15">
+	  <LINK>
+		<TARGET sector="BooS2" />
+	  </LINK>
+	</SECTOR>
+	<SECTOR id="311"
+	  title="BooS2"
+	  melee_spawn="15"
+	  range_spawn="15">
+	  <LINK>
+		<TARGET sector="BooBS" />
+	  </LINK>
+	</SECTOR>
+	<SECTOR id="312"
+	  title="BooBS"
+	  melee_spawn="15"
+	  range_spawn="15">
+	  <LINK>
+		<TARGET sector="BooS1" />
+	  </LINK>
+	</SECTOR>
+
 </MAPSET>
+
+
+
 
 </XML>

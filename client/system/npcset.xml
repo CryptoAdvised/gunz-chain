@@ -796,6 +796,14 @@
 </NPCSET>
 
 
-
+<NPCSET id="10997" name="B01" basenpc="98">
+  <ADDNPC npc_id="98" min_rate="100" max_rate="100" />
+</NPCSET>
+<NPCSET id="10998" name="B02" basenpc="98">
+  <ADDNPC npc_id="98" min_rate="100" max_rate="100" />
+</NPCSET>
+<NPCSET id="10999" name="B03" basenpc="98">
+  <ADDNPC npc_id="98" min_rate="100" max_rate="100" />
+</NPCSET>
 
 </XML>

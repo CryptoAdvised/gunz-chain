@@ -1557,7 +1557,10 @@
 <SELL itemid="200002" />
 
 <SELL itemid="200003" />
-	
+
+<SELL itemid="050592"/>  <!-- Goblis super boss -->	
+<SELL itemid="200099" /> <!-- Boo Quest -->	
+<SELL itemid="200100" /> <!-- Shark boo -->	
 <!--
   <SELL itemid="5023"/>
 -->
